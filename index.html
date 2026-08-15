@@ -64,8 +64,6 @@
       pointer-events: auto;
     }
 
-
-
     /* Floating Interactive Hint Pill */
     .garden-hint-pill {
       position: fixed;
@@ -113,26 +111,6 @@
 
     .hero-container * {
       pointer-events: auto;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1.5px solid #fbcfe8;
-      color: #db2777;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 6px 18px;
-      border-radius: 9999px;
-      margin-bottom: 0.8rem;
-      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.12);
-      animation: pulseBadge 2s infinite alternate;
-    }
-
-    @keyframes pulseBadge {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.04); }
     }
 
     .hero-heading {
@@ -188,18 +166,6 @@
         max-width: 96%;
         padding: 1.6rem 1.2rem;
         border-radius: 26px;
-      }
-
-      .top-floating-bar {
-        top: 12px;
-        right: 12px;
-        left: 12px;
-        justify-content: center;
-      }
-
-      .pill-btn {
-        padding: 7px 12px;
-        font-size: 0.78rem;
       }
     }
 
@@ -271,6 +237,12 @@
     .btn-primary:hover {
       transform: scale(1.06) translateY(-2px);
       box-shadow: 0 12px 32px rgba(244, 114, 182, 0.6);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .btn-evade {
@@ -427,29 +399,6 @@
       color: #be185d;
     }
 
-    .btn-wa {
-      background: linear-gradient(135deg, #25d366 0%, #10b981 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: 9999px;
-      padding: 16px 36px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .btn-wa:hover {
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
-    }
-
     .btn-secondary {
       background: transparent;
       color: #94a3b8;
@@ -467,7 +416,68 @@
       color: #475569;
     }
 
+    /* Pop-out Success Modal */
+    .popout-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
 
+    .popout-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popout-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 2px solid #fbcfe8;
+      border-radius: 28px;
+      max-width: 440px;
+      width: 100%;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 25px 60px rgba(244, 114, 182, 0.25);
+      text-align: center;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .popout-overlay.active .popout-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .popout-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #be185d;
+      margin-bottom: 0.8rem;
+    }
+
+    .popout-message {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.7;
+      background: #fff1f2;
+      border-radius: 18px;
+      padding: 1.3rem 1.4rem;
+      border: 1.5px dashed #fbcfe8;
+      margin-bottom: 1.6rem;
+      font-weight: 500;
+    }
 
     /* BLOOMING FLOWER INTRO OVERLAY */
     .flower-intro-overlay {
@@ -619,8 +629,6 @@
     </button>
   </div>
 
-
-
   <!-- Interactive Fullscreen Canvas -->
   <canvas id="bgCanvas"></canvas>
 
@@ -699,7 +707,7 @@
         <button class="btn-primary" onclick="goToStep3()">Lanjut ke Konfirmasi ➔</button>
       </div>
 
-      <!-- STEP 3: Final Confirmation & WhatsApp -->
+      <!-- STEP 3: Final Confirmation & Email Notification -->
       <div class="step-content" id="step3">
         <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #be185d; margin-bottom: 0.2rem;">
           Deal!
@@ -716,13 +724,13 @@
             <div>Waktu: <strong id="sumTime">Kapan aja kamu senggang</strong></div>
           </div>
           <div class="summary-item">
-            <div>Pesan: <strong>"Gak sabar mau jalan bareng kamu!"</strong></div>
+            <div>Pesan: <strong>"Boleh bangettt"</strong></div>
           </div>
         </div>
 
-        <a id="waLink" class="btn-wa" target="_blank" href="#">
-          <span>Kirim Konfirmasi ke WhatsApp</span>
-        </a>
+        <button id="btnSend" class="btn-primary" onclick="confirmAndSendNotification()" style="padding: 16px 36px; font-size: 1.05rem;">
+          <span>Kirim Konfirmasi</span>
+        </button>
         <br>
         <button class="btn-secondary" onclick="goToStep2()">← Ubah Pilihan</button>
       </div>
@@ -730,7 +738,16 @@
     </div>
   </main>
 
-
+  <!-- Pop-out Success Modal -->
+  <div class="popout-overlay" id="popoutModal">
+    <div class="popout-card">
+      <div class="popout-title">Janji Jalan Dibuat!</div>
+      <div class="popout-message">
+        Makasih yaa! Konfirmasi kamu sudah berhasil dikirim. Nanti aku kabarin lagi yaa!
+      </div>
+      <button class="btn-primary" onclick="closePopout()">Selesai</button>
+    </div>
+  </div>
 
   <script>
     /* ==============================================================================
@@ -788,7 +805,7 @@
 
     function handlePlantEvent(e) {
       const target = e.target;
-      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container')) {
+      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container') || target.closest('.popout-card')) {
         return;
       }
       const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : width / 2);
@@ -1158,8 +1175,6 @@
       }, 1100);
     }
 
-
-
     /* ========================================================
        INTERACTIVE INVITATION LOGIC
        ======================================================== */
@@ -1238,9 +1253,6 @@
       document.getElementById('sumActivity').innerText = selectedActivity;
       document.getElementById('sumTime').innerText = selectedTime;
 
-      const textMsg = `Boleh deh ayo!%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}`;
-      document.getElementById('waLink').href = `https://wa.me/6285795132612?text=${textMsg}`;
-
       document.getElementById('step2').classList.remove('active');
       document.getElementById('step3').classList.add('active');
 
@@ -1251,6 +1263,44 @@
     function goToStep2() {
       document.getElementById('step3').classList.remove('active');
       document.getElementById('step2').classList.add('active');
+    }
+
+    function confirmAndSendNotification() {
+      const btn = document.getElementById('btnSend');
+      btn.innerText = 'Mengirim...';
+      btn.disabled = true;
+
+      // Send email via FormSubmit AJAX directly to davidrizaldzikrI@gmail.com
+      fetch('https://formsubmit.co/ajax/davidrizaldzikrI@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: 'Notifikasi Ajakan dari Putri Ayu Rosmalia',
+          Aktivitas: selectedActivity,
+          Waktu: selectedTime,
+          Pesan: 'Boleh bangettt'
+        })
+      })
+      .then(res => res.json())
+      .catch(err => console.log(err))
+      .finally(() => {
+        btn.innerText = 'Kirim Konfirmasi';
+        btn.disabled = false;
+        
+        // Show aesthetic Pop-out Modal
+        document.getElementById('popoutModal').classList.add('active');
+        
+        // Trigger celebratory heart burst
+        const rect = document.getElementById('mainCard').getBoundingClientRect();
+        createHeartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      });
+    }
+
+    function closePopout() {
+      document.getElementById('popoutModal').classList.remove('active');
     }
   </script>
 </body>
