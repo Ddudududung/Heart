@@ -4,24 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajakan Spesial ✨ | Untuk Putri Ayu Rosmalia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <style>
     :root {
-      --bg-gradient: radial-gradient(ellipse at 50% 20%, #4f60f6 0%, #3646d6 40%, #1e2687 75%, #0f144d 100%);
-      --glass-bg: rgba(255, 255, 255, 0.14);
-      --glass-border: rgba(255, 255, 255, 0.32);
-      --glass-shadow: 0 25px 50px -12px rgba(13, 19, 78, 0.55);
-      --accent-pink: #ff3b7b;
-      --accent-pink-glow: rgba(255, 59, 123, 0.6);
-      --accent-gradient: linear-gradient(135deg, #ff3b7b 0%, #ff6b9d 50%, #f472b6 100%);
-      --text-main: #ffffff;
-      --text-sub: #dbeafe;
-      --text-muted: #93c5fd;
+      /* Soft Aesthetic Pastel Palette */
+      --bg-gradient-pink: linear-gradient(135deg, #fff0f5 0%, #f3e8ff 35%, #fce7f3 70%, #ffedd5 100%);
+      --bg-gradient-blue: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 35%, #f3e8ff 70%, #fce7f3 100%);
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.18), 0 10px 25px -5px rgba(192, 132, 252, 0.12);
+      
+      --text-main: #334155;
+      --text-title: #831843;
+      --text-sub: #475569;
+      --text-muted: #64748b;
+      
+      --accent-pink: #ec4899;
+      --accent-pink-glow: rgba(244, 114, 182, 0.45);
+      --accent-gradient: linear-gradient(135deg, #f472b6 0%, #fb7185 50%, #c084fc 100%);
+      --accent-secondary: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
     }
 
     * {
@@ -31,8 +38,7 @@
     }
 
     body {
-      background: #1e2687;
-      background: var(--bg-gradient);
+      background: var(--bg-gradient-pink);
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-main);
       min-height: 100vh;
@@ -41,9 +47,14 @@
       align-items: center;
       overflow-x: hidden;
       position: relative;
+      transition: background 0.8s ease;
     }
 
-    /* Fullscreen Interactive Canvas (Sky + Meadow Garden) */
+    body.theme-blue {
+      background: var(--bg-gradient-blue);
+    }
+
+    /* Fullscreen Interactive Canvas (Pastel Sky + Meadow) */
     #bgCanvas {
       position: fixed;
       top: 0;
@@ -52,26 +63,61 @@
       height: 100vh;
       z-index: 0;
       pointer-events: auto;
-      /* Allows direct interaction with flower garden */
+    }
+
+    /* Top Floating Utility Bar (Music & Secret Letter & Theme Switcher) */
+    .top-floating-bar {
+      position: fixed;
+      top: 18px;
+      right: 20px;
+      z-index: 50;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      color: #701a75;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+    }
+
+    .pill-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(244, 114, 182, 0.25);
+      background: #ffffff;
     }
 
     /* Floating Interactive Hint Pill */
     .garden-hint-pill {
       position: fixed;
-      bottom: 24px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
-      background: rgba(15, 20, 77, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #ffffff;
-      padding: 10px 24px;
+      border: 1.5px solid rgba(244, 114, 182, 0.3);
+      color: #831843;
+      padding: 9px 22px;
       border-radius: 9999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 157, 0.3);
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(244, 114, 182, 0.2);
       pointer-events: none;
       animation: floatPill 3s ease-in-out infinite alternate;
       display: flex;
@@ -80,62 +126,64 @@
     }
 
     @keyframes floatPill {
-      0% {
-        transform: translate(-50%, 0);
-      }
-
-      100% {
-        transform: translate(-50%, -6px);
-      }
+      0% { transform: translate(-50%, 0); }
+      100% { transform: translate(-50%, -6px); }
     }
 
-
-    /* ==========================================
-       MAIN HERO LAYOUT
-       ========================================== */
+    /* HERO CONTAINER */
     .hero-container {
       position: relative;
       z-index: 1;
       width: 100%;
       max-width: 900px;
-      padding: 3rem 1.5rem 6rem 1.5rem;
+      padding: 2.5rem 1.5rem 5rem 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       margin: auto;
       pointer-events: none;
-      /* Let clicks pass through to canvas when clicking outside cards */
       transform: translateZ(0);
-      will-change: transform;
     }
 
     .hero-container * {
       pointer-events: auto;
-      /* Re-enable pointer events for interactive buttons & cards */
     }
 
-    .hero-heading-sub {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.9rem;
-      color: #ffb4d2;
-      text-shadow: 0 0 12px rgba(255, 180, 210, 0.7);
-      margin-bottom: 0.4rem;
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1.5px solid #fbcfe8;
+      color: #db2777;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.12);
+      animation: pulseBadge 2s infinite alternate;
+    }
+
+    @keyframes pulseBadge {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.04); }
     }
 
     .hero-heading {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      color: #ffffff;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+      color: var(--text-title);
+      text-shadow: 0 4px 15px rgba(244, 114, 182, 0.15);
       margin-bottom: 1.2rem;
     }
 
     .hero-heading span {
-      background: linear-gradient(135deg, #ffffff 30%, #ffb4d2 100%);
+      background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -145,52 +193,49 @@
       width: 100%;
       max-width: 550px;
       background: var(--glass-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-radius: 28px;
-      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-radius: 32px;
+      border: 2px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
       padding: 2.2rem 2rem;
       text-align: center;
       position: relative;
       z-index: 2;
-      transform: translateZ(0);
+      transition: all 0.4s ease;
+    }
+
+    .card-container:hover {
+      box-shadow: 0 25px 60px -10px rgba(244, 114, 182, 0.25), 0 15px 30px -5px rgba(192, 132, 252, 0.18);
     }
 
     /* Mobile Responsive Optimizations */
     @media (max-width: 768px) {
       .hero-container {
-        padding: 1.5rem 0.8rem 140px 0.8rem;
+        padding: 4.5rem 0.8rem 130px 0.8rem;
       }
 
       .hero-heading {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
         margin-bottom: 0.8rem;
       }
 
       .card-container {
-        max-width: 95%;
-        padding: 1.5rem 1.1rem;
-        border-radius: 22px;
-        background: rgba(15, 22, 80, 0.65);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        max-width: 96%;
+        padding: 1.6rem 1.2rem;
+        border-radius: 26px;
       }
 
-      .invitation-text {
-        padding: 1.1rem 1rem;
-        font-size: 0.98rem;
-        margin-bottom: 1.4rem;
-      }
-
-      .garden-hint-pill {
-        bottom: 12px;
-        font-size: 0.8rem;
-        padding: 8px 16px;
-        width: 90%;
+      .top-floating-bar {
+        top: 12px;
+        right: 12px;
+        left: 12px;
         justify-content: center;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .pill-btn {
+        padding: 7px 12px;
+        font-size: 0.78rem;
       }
     }
 
@@ -209,7 +254,6 @@
         opacity: 0;
         transform: translateY(16px) scale(0.98);
       }
-
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -218,13 +262,18 @@
 
     .invitation-text {
       font-size: 1.05rem;
-      color: var(--text-sub);
-      line-height: 1.75;
-      background: rgba(15, 20, 77, 0.55);
-      border-radius: 20px;
+      color: #475569;
+      line-height: 1.8;
+      background: rgba(255, 241, 242, 0.75);
+      border-radius: 22px;
       padding: 1.4rem 1.6rem;
-      border: 1px dashed rgba(255, 255, 255, 0.25);
+      border: 1.5px dashed #fbcfe8;
       margin-bottom: 1.8rem;
+      font-weight: 500;
+    }
+
+    .invitation-text strong {
+      color: #be185d;
     }
 
     /* Buttons */
@@ -246,8 +295,8 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 25px var(--accent-pink-glow);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 25px var(--accent-pink-glow);
       font-family: 'Outfit', sans-serif;
       letter-spacing: 0.3px;
       display: inline-flex;
@@ -257,23 +306,24 @@
 
     .btn-primary:hover {
       transform: scale(1.06) translateY(-2px);
-      box-shadow: 0 8px 32px rgba(255, 59, 123, 0.75);
+      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.6);
     }
 
     .btn-evade {
-      background: rgba(255, 255, 255, 0.12);
-      color: #e2e8f0;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.9);
+      color: #64748b;
+      border: 1.5px solid #cbd5e1;
       border-radius: 9999px;
       padding: 14px 26px;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.15s ease;
       font-family: inherit;
       user-select: none;
       z-index: 10;
       backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     /* Activity Grid Options */
@@ -286,112 +336,121 @@
     }
 
     .option-card {
-      background: rgba(15, 20, 77, 0.6);
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid #f1f5f9;
+      border-radius: 22px;
       padding: 14px 10px;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 8px;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     }
 
     .option-card:hover {
-      border-color: #ff6b9d;
-      background: rgba(255, 107, 157, 0.2);
-      transform: translateY(-3px);
+      border-color: #f472b6;
+      background: rgba(253, 242, 248, 0.9);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(244, 114, 182, 0.18);
     }
 
     .option-card.selected {
-      border-color: var(--accent-pink);
-      background: linear-gradient(135deg, rgba(255, 59, 123, 0.35), rgba(167, 139, 250, 0.35));
-      box-shadow: 0 0 22px rgba(255, 59, 123, 0.45);
+      border-color: #ec4899;
+      background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+      transform: translateY(-2px);
     }
 
     .option-icon {
-      font-size: 30px;
+      font-size: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .option-card:hover .option-icon {
+      transform: scale(1.15) rotate(5deg);
     }
 
     .option-title {
       font-size: 0.9rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #831843;
     }
 
     .option-desc {
       font-size: 0.75rem;
-      color: var(--text-sub);
+      color: #64748b;
     }
 
     /* Custom Time Input Field */
     .custom-input {
       width: 100%;
-      background: rgba(15, 20, 77, 0.65);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid #fbcfe8;
+      border-radius: 18px;
       padding: 14px 18px;
       font-size: 0.95rem;
       font-weight: 600;
-      color: #ffffff;
+      color: #334155;
       outline: none;
       transition: all 0.3s ease;
       font-family: 'Plus Jakarta Sans', sans-serif;
       text-align: center;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
     .custom-input::placeholder {
-      color: #93c5fd;
-      opacity: 0.75;
+      color: #94a3b8;
       font-weight: 400;
     }
 
     .custom-input:focus {
-      border-color: #ff6b9d;
-      box-shadow: 0 0 20px rgba(255, 59, 123, 0.45);
-      background: rgba(15, 20, 77, 0.85);
+      border-color: #ec4899;
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
+      background: #ffffff;
     }
 
     /* Time Picker Pills */
     .time-container {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.6rem;
     }
 
     .time-pill {
-      background: rgba(15, 20, 77, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1.5px solid #f1f5f9;
       border-radius: 9999px;
       padding: 8px 16px;
       font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-sub);
+      font-weight: 700;
+      color: #64748b;
       cursor: pointer;
       transition: all 0.25s ease;
     }
 
     .time-pill:hover {
-      border-color: #ff6b9d;
-      color: #ffffff;
+      border-color: #f472b6;
+      color: #be185d;
+      background: #fff5f8;
     }
 
     .time-pill.selected {
       background: var(--accent-gradient);
       border-color: transparent;
       color: #ffffff;
-      box-shadow: 0 0 18px var(--accent-pink-glow);
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
     }
 
-    /* Step 3 Summary */
+    /* Step 3 Summary & Coupon Card */
     .summary-card {
-      background: rgba(15, 20, 77, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 20px;
+      background: rgba(255, 241, 242, 0.8);
+      border: 2px dashed #fbcfe8;
+      border-radius: 24px;
       padding: 1.5rem;
       margin-bottom: 1.6rem;
       text-align: left;
@@ -402,25 +461,60 @@
       align-items: center;
       gap: 14px;
       margin-bottom: 12px;
-      font-size: 0.95rem;
-      color: var(--text-sub);
+      font-size: 0.98rem;
+      color: #475569;
     }
 
     .summary-item strong {
-      color: #ffffff;
+      color: #be185d;
+    }
+
+    /* Love Coupon Bonus Badge */
+    .love-coupon {
+      background: linear-gradient(135deg, #fff1f2 0%, #fef3c7 100%);
+      border: 2px dashed #f59e0b;
+      border-radius: 18px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
+    }
+
+    .love-coupon-icon {
+      font-size: 28px;
+    }
+
+    .love-coupon-text {
+      text-align: left;
+    }
+
+    .love-coupon-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #b45309;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .love-coupon-sub {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #78350f;
     }
 
     .btn-wa {
-      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      background: linear-gradient(135deg, #25d366 0%, #10b981 100%);
       color: #ffffff;
       border: none;
       border-radius: 9999px;
-      padding: 15px 34px;
-      font-size: 1rem;
+      padding: 16px 36px;
+      font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -430,38 +524,100 @@
 
     .btn-wa:hover {
       transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--text-muted);
+      color: #94a3b8;
       border: none;
       padding: 10px 20px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       cursor: pointer;
       margin-top: 12px;
       text-decoration: underline;
       font-family: inherit;
+      font-weight: 600;
     }
 
     .btn-secondary:hover {
-      color: #ffffff;
+      color: #475569;
     }
 
-    /* ==========================================
-       BLOOMING FLOWER INTRO OVERLAY
-       ========================================== */
+    /* Secret Love Letter Modal */
+    .letter-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .letter-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .letter-card {
+      background: #fffdfa;
+      border: 2px solid #fbcfe8;
+      border-radius: 28px;
+      max-width: 480px;
+      width: 100%;
+      padding: 2.2rem;
+      box-shadow: 0 25px 60px rgba(244, 114, 182, 0.25);
+      text-align: center;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .letter-modal-overlay.active .letter-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .letter-header {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      color: #be185d;
+      margin-bottom: 1rem;
+    }
+
+    .letter-body {
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      color: #334155;
+      line-height: 1.6;
+      text-align: left;
+      background: #fff5f8;
+      padding: 1.4rem;
+      border-radius: 18px;
+      border: 1px dashed #f472b6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* BLOOMING FLOWER INTRO OVERLAY */
     .flower-intro-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(ellipse at 50% 25%, #4657ed 0%, #202b8c 60%, #0d1245 100%);
+      background: radial-gradient(ellipse at 50% 30%, #fff0f5 0%, #f3e8ff 60%, #e0f2fe 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -473,30 +629,23 @@
 
     .flower-intro-overlay.hidden {
       opacity: 0;
-      transform: scale(1.1);
+      transform: scale(1.08);
       pointer-events: none;
       visibility: hidden;
     }
 
     .intro-title {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: #ffb4d2;
-      text-shadow: 0 0 18px rgba(255, 180, 210, 0.8);
-      margin-bottom: 2.2rem;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: #be185d;
+      text-shadow: 0 0 20px rgba(244, 114, 182, 0.4);
+      margin-bottom: 2rem;
       animation: pulseText 2.5s ease-in-out infinite alternate;
     }
 
     @keyframes pulseText {
-      0% {
-        text-shadow: 0 0 12px rgba(255, 180, 210, 0.6);
-        transform: scale(0.98);
-      }
-
-      100% {
-        text-shadow: 0 0 25px rgba(255, 59, 123, 1);
-        transform: scale(1.02);
-      }
+      0% { transform: scale(0.98); }
+      100% { transform: scale(1.03); }
     }
 
     .flower-bloom-container {
@@ -518,10 +667,10 @@
       left: 50%;
       width: 44px;
       height: 44px;
-      background: radial-gradient(circle, #fff3b0 0%, #ffc107 80%);
+      background: radial-gradient(circle, #fff3b0 0%, #facc15 80%);
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      box-shadow: 0 0 25px #ffc107, inset 0 0 10px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 25px #facc15, inset 0 0 10px rgba(255, 255, 255, 0.8);
       z-index: 5;
     }
 
@@ -531,10 +680,10 @@
       left: 50%;
       width: 45px;
       height: 75px;
-      background: linear-gradient(135deg, #ff85b0 0%, #ff3b7b 100%);
+      background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
       border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
       transform-origin: bottom center;
-      box-shadow: 0 0 18px rgba(255, 59, 123, 0.55);
+      box-shadow: 0 0 18px rgba(244, 114, 182, 0.45);
       transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
@@ -544,43 +693,20 @@
       opacity: 0.85;
     }
 
-    .p1 {
-      transform: translate(-50%, -100%) rotate(0deg);
-    }
-
-    .p2 {
-      transform: translate(-50%, -100%) rotate(45deg);
-    }
-
-    .p3 {
-      transform: translate(-50%, -100%) rotate(90deg);
-    }
-
-    .p4 {
-      transform: translate(-50%, -100%) rotate(135deg);
-    }
-
-    .p5 {
-      transform: translate(-50%, -100%) rotate(180deg);
-    }
-
-    .p6 {
-      transform: translate(-50%, -100%) rotate(225deg);
-    }
-
-    .p7 {
-      transform: translate(-50%, -100%) rotate(270deg);
-    }
-
-    .p8 {
-      transform: translate(-50%, -100%) rotate(315deg);
-    }
+    .p1 { transform: translate(-50%, -100%) rotate(0deg); }
+    .p2 { transform: translate(-50%, -100%) rotate(45deg); }
+    .p3 { transform: translate(-50%, -100%) rotate(90deg); }
+    .p4 { transform: translate(-50%, -100%) rotate(135deg); }
+    .p5 { transform: translate(-50%, -100%) rotate(180deg); }
+    .p6 { transform: translate(-50%, -100%) rotate(225deg); }
+    .p7 { transform: translate(-50%, -100%) rotate(270deg); }
+    .p8 { transform: translate(-50%, -100%) rotate(315deg); }
 
     .flower-bloom-container.bloomed .bloom-petal {
       height: 80px;
       width: 50px;
       opacity: 1;
-      box-shadow: 0 0 25px rgba(255, 107, 157, 0.9);
+      box-shadow: 0 0 25px rgba(244, 114, 182, 0.8);
     }
 
     .btn-bloom {
@@ -592,7 +718,7 @@
       font-size: 1.15rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 30px var(--accent-pink-glow);
+      box-shadow: 0 8px 30px var(--accent-pink-glow);
       transition: all 0.3s ease;
       font-family: 'Outfit', sans-serif;
       letter-spacing: 0.5px;
@@ -603,7 +729,7 @@
 
     .btn-bloom:hover {
       transform: scale(1.08) translateY(-3px);
-      box-shadow: 0 8px 35px rgba(255, 59, 123, 0.85);
+      box-shadow: 0 12px 35px rgba(244, 114, 182, 0.65);
     }
   </style>
 </head>
@@ -612,7 +738,7 @@
 
   <!-- Blooming Flower Intro Overlay -->
   <div class="flower-intro-overlay" id="flowerIntro">
-    <div class="intro-title"> Sebuah Kebun Bunga Mekar </div>
+    <div class="intro-title">🌸 Taman Bunga Pastel Mekar 🌸</div>
 
     <div class="flower-bloom-container bud" id="flowerBloom" onclick="triggerBloom()">
       <div class="bloom-center"></div>
@@ -627,21 +753,38 @@
     </div>
 
     <button class="btn-bloom" onclick="triggerBloom()">
-      <span>Masuk Kebun Bunga </span>
+      <span>Buka Kebun Bunga ✨</span>
     </button>
   </div>
 
-  <!-- Interactive Fullscreen Canvas (Stars + Interactive Flower Meadow) -->
-  <canvas id="bgCanvas"></canvas>
-
-  <!-- Interactive Floating Hint Pill -->
-  <div class="garden-hint-pill">
-    <span> Klik di mana aja buat munculin bunga baru</span>
+  <!-- Top Floating Utility Controls -->
+  <div class="top-floating-bar">
+    <button class="pill-btn" onclick="toggleMusic()" id="btnMusic">
+      <span>🎵</span> <span id="musicLabel">Musik Soft</span>
+    </button>
+    <button class="pill-btn" onclick="openSecretLetter()">
+      <span>✉️</span> <span>Surat Rahasia</span>
+    </button>
+    <button class="pill-btn" onclick="toggleTheme()" id="btnTheme">
+      <span>🌸</span> <span>Tema Pastel</span>
+    </button>
   </div>
 
+  <!-- Interactive Fullscreen Canvas (Clouds + Sparkles + Pastel Meadow) -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Floating Interactive Hint Pill -->
+  <div class="garden-hint-pill">
+    <span>✨ Klik di layar mana aja buat nanam bunga pastel!</span>
+  </div>
 
   <!-- Main Hero Section -->
   <main class="hero-container">
+
+    <div class="hero-tag">
+      <span>✨ Undangan Spesial</span>
+    </div>
+
     <h1 class="hero-heading">Haiii Putri Ayu <span>Rosmalia.</span></h1>
 
     <!-- Main Interactive Card Container -->
@@ -650,74 +793,89 @@
       <!-- STEP 1: Main Proposal Invitation -->
       <div class="step-content active" id="step1">
         <div class="invitation-text">
-          "Bosen gak sih dikosan?<br>
+          "Bosen gak sih dikosan? 🥺<br>
           Mau ga kalau aku ajak main atau jalan berdua?<br>
-          itu juga kalau kamu udah enakan badan nya"
+          <strong>Itu juga kalau kamu udah enakan badannya yaa 💕</strong>"
         </div>
 
         <div class="button-group" id="btnGroup">
           <button class="btn-primary" onclick="acceptInvitation()">Mau Banget! ➔</button>
-          <button class="btn-evade" id="btnEvade" onmouseover="evadeButton()" onclick="evadeButton()">Enggak Ah
-            😜</button>
+          <button class="btn-evade" id="btnEvade" onmouseover="evadeButton()" onclick="evadeButton()">Enggak Ah 😜</button>
         </div>
       </div>
 
       <!-- STEP 2: Choose Activity & Time -->
       <div class="step-content" id="step2">
-        <div class="title-sub"
-          style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ffb4d2; margin-bottom: 0.3rem;">
-          Yaaaaay! </div>
-        <h2
-          style="font-family: 'Outfit', sans-serif; font-size: 2.1rem; font-weight: 700; margin-bottom: 1rem; color: #fff;">
-          Mau Main Ke Mana?</h2>
+        <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #be185d; margin-bottom: 0.2rem;">
+          Yaaaaay! 🎉
+        </div>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #831843;">
+          Mau Main Ke Mana?
+        </h2>
 
-        <p style="font-size: 0.9rem; color: #dbeafe; margin-bottom: 1rem;">Pilih kegiatan nya :</p>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; font-weight: 600;">Pilih aktivitas favorit kamu :</p>
 
         <div class="options-grid">
           <div class="option-card selected" onclick="selectActivity(this, 'Bebas Gimana Kamu ✨')">
             <div class="option-icon">✨</div>
-            <div class="option-title">Bebas Gimana Kamu</div>
+            <div class="option-title">Bebas Kamu</div>
+            <div class="option-desc">Ikut aja dehh</div>
+          </div>
+
+          <div class="option-card" onclick="selectActivity(this, 'Cafe Hopping & Ngopi ☕')">
+            <div class="option-icon">☕</div>
+            <div class="option-title">Cafe Hopping</div>
+            <div class="option-desc">Nyantai & ngopi</div>
           </div>
 
           <div class="option-card" onclick="selectActivity(this, 'Night Ride 🏍️')">
             <div class="option-icon">🏍️</div>
             <div class="option-title">Night Ride</div>
+            <div class="option-desc">Keliling malam</div>
           </div>
 
           <div class="option-card" onclick="selectActivity(this, 'Wisata Alam 🌿')">
             <div class="option-icon">🌿</div>
             <div class="option-title">Wisata Alam</div>
+            <div class="option-desc">Cari udara segar</div>
+          </div>
+
+          <div class="option-card" onclick="selectActivity(this, 'Photobooth Lucu 📸')">
+            <div class="option-icon">📸</div>
+            <div class="option-title">Photobooth</div>
+            <div class="option-desc">Foto berdua</div>
           </div>
 
           <div class="option-card" onclick="selectActivity(this, 'Main ke Playground 🎠')">
             <div class="option-icon">🎠</div>
             <div class="option-title">Playground</div>
+            <div class="option-desc">Seru-seruan</div>
           </div>
         </div>
 
-        <p style="font-size: 0.9rem; color: #dbeafe; margin-bottom: 0.8rem;">Kapan kira-kira waktunya?</p>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.8rem; font-weight: 600;">Kapan kira-kira waktunya?</p>
         <div style="margin-bottom: 1.8rem;">
           <input type="text" id="inputTime" class="custom-input"
             placeholder="Tulis waktu / hari sendiri... (misal: Sabtu jam 7 malam)"
             oninput="updateTimeFromInput(this.value)">
           <div class="time-container" style="margin-top: 10px; margin-bottom: 0;">
-            <div class="time-pill" onclick="selectQuickTime('Weekend ini ')">Weekend ini</div>
-            <div class="time-pill" onclick="selectQuickTime('Malam ini ')">Malam ini</div>
-            <div class="time-pill" onclick="selectQuickTime('Kapan aja kamu senggang ')">Kapan aja kamu senggang</div>
+            <div class="time-pill" onclick="selectQuickTime('Weekend ini 💖')">Weekend ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Malam ini 🌙')">Malam ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Kapan aja kamu senggang 🌸')">Kapan aja kamu senggang</div>
           </div>
         </div>
 
         <button class="btn-primary" onclick="goToStep3()">Lanjut ke Konfirmasi ➔</button>
       </div>
 
-      <!-- STEP 3: Final Confirmation & Send WhatsApp -->
+      <!-- STEP 3: Final Confirmation & WhatsApp -->
       <div class="step-content" id="step3">
-        <div class="title-sub"
-          style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ffb4d2; margin-bottom: 0.3rem;">
-          Deal! </div>
-        <h2
-          style="font-family: 'Outfit', sans-serif; font-size: 2.1rem; font-weight: 700; margin-bottom: 1.2rem; color: #fff;">
-          Janji Main Berdua Dibuat! </h2>
+        <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #be185d; margin-bottom: 0.2rem;">
+          Deal! 🤝
+        </div>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1.2rem; color: #831843;">
+          Janji Jalan Berdua Dibuat! 💖
+        </h2>
 
         <div class="summary-card">
           <div class="summary-item">
@@ -732,10 +890,19 @@
             <span style="font-size: 24px;">💬</span>
             <div>Pesan: <strong>"Gak sabar mau jalan bareng kamu! 🥰"</strong></div>
           </div>
+
+          <!-- Love Coupon Gift Badge -->
+          <div class="love-coupon">
+            <div class="love-coupon-icon">🎁</div>
+            <div class="love-coupon-text">
+              <div class="love-coupon-title">Bonus Kupon Spesial</div>
+              <div class="love-coupon-sub">Gratis Es Krim + Hug 🍦🫂</div>
+            </div>
+          </div>
         </div>
 
         <a id="waLink" class="btn-wa" target="_blank" href="#">
-          <span>Kirim ke WhatsApp</span> 💬
+          <span>Kirim Konfirmasi ke WhatsApp</span> 💬
         </a>
         <br>
         <button class="btn-secondary" onclick="goToStep2()">← Ubah Pilihan</button>
@@ -744,9 +911,23 @@
     </div>
   </main>
 
+  <!-- Secret Love Letter Modal -->
+  <div class="letter-modal-overlay" id="letterModal">
+    <div class="letter-card">
+      <div class="letter-header">Pesan Rahasia ✉️</div>
+      <div class="letter-body">
+        "Haiii Putri Ayu Rosmalia... ✨<br><br>
+        Semoga harimu menyenangkan dan badannya cepat enakan yaa. 
+        Jangan lupa istirahat yang cukup dan makan yang teratur.<br><br>
+        Aku cuma mau bilang kalau aku seneng banget bisa kenal dan ngobrol sama kamu. Kalau kamu butuh temen jalan atau sekedar refreshing, aku selalu siap menemani! 💕"
+      </div>
+      <button class="btn-primary" onclick="closeSecretLetter()">Tutup Pesan 💖</button>
+    </div>
+  </div>
+
   <script>
     /* ==============================================================================
-       INTERACTIVE PROCEDURAL FLOWER MEADOW & CANVASES ENGINE
+       SOFT PASTEL CANVAS ENGINE (PROCEDURAL FLOWERS, CLOUDS, SPARKLES, PARTICLES)
        ============================================================================== */
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -756,6 +937,7 @@
 
     let mouse = { x: -1000, y: -1000 };
     let stars = [];
+    let clouds = [];
     let grassBlades = [];
     let gardenFlowers = [];
     let heartParticles = [];
@@ -764,12 +946,14 @@
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      createTrailParticle(e.clientX, e.clientY);
     });
 
     window.addEventListener('touchmove', (e) => {
       if (e.touches && e.touches[0]) {
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
+        createTrailParticle(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
 
@@ -779,10 +963,27 @@
       initElements();
     });
 
+    // Create subtle floating mouse trail sparkles
+    function createTrailParticle(x, y) {
+      if (Math.random() > 0.4) return;
+      heartParticles.push({
+        x: x + (Math.random() - 0.5) * 10,
+        y: y + (Math.random() - 0.5) * 10,
+        size: Math.random() * 8 + 4,
+        speedX: (Math.random() - 0.5) * 1.5,
+        speedY: (Math.random() - 0.5) * 1.5 - 0.5,
+        gravity: -0.02,
+        opacity: 0.8,
+        rotation: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.05,
+        color: ['#f472b6', '#c084fc', '#38bdf8', '#fde047', '#f43f5e'][Math.floor(Math.random() * 5)]
+      });
+    }
+
     // Plant a new blooming flower interactively when clicking/touching anywhere!
     function handlePlantEvent(e) {
       const target = e.target;
-      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container')) {
+      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container') || target.closest('.top-floating-bar') || target.closest('.letter-card')) {
         return;
       }
       const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : width / 2);
@@ -800,75 +1001,87 @@
     }, { passive: true });
 
     function getHillY(x) {
-      // Dynamic hill baseline: higher up on mobile screens so flowers are clearly visible
       const isMobile = width < 768;
-      const hillBase = isMobile ? height * 0.58 : height * 0.72;
-      return hillBase + Math.sin(x * 0.003) * 30 + Math.cos(x * 0.006) * 16;
+      const hillBase = isMobile ? height * 0.65 : height * 0.74;
+      return hillBase + Math.sin(x * 0.003) * 25 + Math.cos(x * 0.006) * 14;
     }
 
     function initElements() {
       stars = [];
+      clouds = [];
       grassBlades = [];
       gardenFlowers = [];
       const isMobile = width < 768;
 
-      // 1. Twinkling Stars in Periwinkle Sky (Fewer on Mobile)
-      const numStars = Math.floor((width * height) / (isMobile ? 12000 : 6000));
-      for (let i = 0; i < Math.max(50, numStars); i++) {
+      // 1. Soft Pastel Twinkling Sparkles
+      const numStars = Math.floor((width * height) / (isMobile ? 12000 : 7000));
+      for (let i = 0; i < Math.max(40, numStars); i++) {
         stars.push({
           x: Math.random() * width,
           y: Math.random() * (height * 0.65),
-          radius: Math.random() * 2.2 + 0.5,
+          radius: Math.random() * 2.5 + 0.8,
           alpha: Math.random() * 0.8 + 0.2,
-          twinkleSpeed: Math.random() * 0.025 + 0.008,
+          twinkleSpeed: Math.random() * 0.02 + 0.008,
           twinkleDir: Math.random() > 0.5 ? 1 : -1,
-          color: ['#ffffff', '#ffb4d2', '#dbeafe', '#e2b0ff', '#ffffff'][Math.floor(Math.random() * 5)]
+          color: ['#f472b6', '#c084fc', '#38bdf8', '#fb7185', '#ffffff'][Math.floor(Math.random() * 5)]
         });
       }
 
-      // 2. Procedural Swaying Grass Blades along Meadow Hill (Optimized density on Mobile)
-      const grassCount = Math.floor(width / (isMobile ? 7.5 : 3.5));
+      // 2. Soft Pastel Floating Clouds
+      const cloudCount = isMobile ? 3 : 5;
+      for (let i = 0; i < cloudCount; i++) {
+        clouds.push({
+          x: Math.random() * width,
+          y: Math.random() * (height * 0.35) + 20,
+          scale: Math.random() * 0.6 + 0.5,
+          speed: Math.random() * 0.25 + 0.1,
+          opacity: Math.random() * 0.4 + 0.3
+        });
+      }
+
+      // 3. Procedural Swaying Grass Blades (Pastel Mint Green)
+      const grassCount = Math.floor(width / (isMobile ? 7 : 3.5));
       for (let i = 0; i < grassCount; i++) {
         const x = i * (width / grassCount) + (Math.random() * 4 - 2);
         const groundY = getHillY(x);
-        const grassHeight = Math.random() * (isMobile ? 65 : 55) + 35;
+        const grassHeight = Math.random() * (isMobile ? 60 : 50) + 30;
         grassBlades.push({
           x: x,
           groundY: groundY,
           height: grassHeight,
           width: Math.random() * 4 + 2,
           angle: 0,
-          maxSway: Math.random() * 15 + 8,
+          maxSway: Math.random() * 14 + 6,
           phase: Math.random() * Math.PI * 2,
-          color: ['#22c55e', '#16a34a', '#15803d', '#4ade80', '#86efac'][Math.floor(Math.random() * 5)]
+          color: ['#86efac', '#4ade80', '#6ee7b7', '#a7f3d0', '#34d399'][Math.floor(Math.random() * 5)]
         });
       }
 
-      // 3. Pre-planted Interactive Meadow Flowers
-      const initialFlowersCount = Math.floor(width / (isMobile ? 32 : 28));
+      // 4. Pre-planted Interactive Pastel Flowers
+      const initialFlowersCount = Math.floor(width / (isMobile ? 30 : 25));
       for (let i = 0; i < initialFlowersCount; i++) {
         const x = Math.random() * width;
         const groundY = getHillY(x);
-        // Taller stems on sides so flowers sprout around card
         const isSide = (x < width * 0.3 || x > width * 0.7);
-        const extraStem = isSide ? (isMobile ? 50 : 30) : (isMobile ? 30 : 0);
+        const extraStem = isSide ? (isMobile ? 45 : 25) : 0;
         createFlowerObject(x, groundY, true, extraStem);
       }
     }
 
     function createFlowerObject(x, groundY, instantBloom = false, extraStem = 0) {
       const isMobile = width < 768;
-      const baseStem = isMobile ? Math.random() * 100 + 70 : Math.random() * 90 + 60;
+      const baseStem = isMobile ? Math.random() * 90 + 60 : Math.random() * 85 + 50;
       const stemHeight = baseStem + extraStem;
 
       const flowerTypes = ['rose', 'tulip', 'daisy', 'sunflower', 'cosmos', 'heart'];
+      // Vibrant Soft Pastel Color Pairs
       const flowerColors = [
-        ['#ff3b7b', '#ff6b9d'], // Rose Pink
-        ['#ef4444', '#f87171'], // Crimson Red
-        ['#f97316', '#fb923c'], // Warm Orange
-        ['#facc15', '#fde047'], // Golden Yellow
-        ['#a855f7', '#c084fc'], // Purple Lavender
-        ['#ec4899', '#f472b6']  // Magenta Heart
+        ['#f472b6', '#fb7185'], // Sakura Pastel Pink
+        ['#c084fc', '#e879f9'], // Soft Lavender Purple
+        ['#38bdf8', '#818cf8'], // Pastel Sky Blue
+        ['#facc15', '#fde047'], // Buttercup Yellow
+        ['#34d399', '#a7f3d0'], // Mint Soft Green
+        ['#fb923c', '#fdba74']  // Warm Pastel Peach
       ];
       const selectedType = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
       const selectedColors = flowerColors[Math.floor(Math.random() * flowerColors.length)];
@@ -889,45 +1102,68 @@
         angle: 0
       });
 
-      // Sparkle burst upon planting
       if (!instantBloom) {
         createHeartBurst(x, groundY - stemHeight);
       }
     }
 
     function plantInteractiveFlower(clickX, clickY) {
-      // Plant flower at click/touch location, finding groundY
       const groundY = clickY > height * 0.4 ? clickY : getHillY(clickX);
       createFlowerObject(clickX, groundY, false);
     }
 
     function createHeartBurst(x, y) {
       const isMobile = width < 768;
-      const count = isMobile ? 18 : 45;
+      const count = isMobile ? 20 : 40;
       for (let i = 0; i < count; i++) {
         heartParticles.push({
           x: x,
           y: y,
           size: Math.random() * 16 + 8,
-          speedX: (Math.random() - 0.5) * 11,
-          speedY: (Math.random() - 0.5) * 11 - 2,
+          speedX: (Math.random() - 0.5) * 10,
+          speedY: (Math.random() - 0.5) * 10 - 2,
           gravity: 0.12,
           opacity: 1,
           rotation: Math.random() * Math.PI * 2,
           spin: (Math.random() - 0.5) * 0.1,
-          color: ['#ff3b7b', '#ff6b9d', '#ffb4d2', '#ffffff', '#ffd700'][Math.floor(Math.random() * 5)]
+          color: ['#f472b6', '#fb7185', '#c084fc', '#38bdf8', '#fde047', '#ffffff'][Math.floor(Math.random() * 6)]
         });
       }
     }
 
+    function drawClouds() {
+      ctx.save();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+      for (let i = 0; i < clouds.length; i++) {
+        const c = clouds[i];
+        c.x += c.speed;
+        if (c.x > width + 150) c.x = -150;
+
+        ctx.save();
+        ctx.translate(c.x, c.y);
+        ctx.scale(c.scale, c.scale);
+        ctx.globalAlpha = c.opacity;
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 30, 0, Math.PI * 2);
+        ctx.arc(25, -15, 35, 0, Math.PI * 2);
+        ctx.arc(60, -10, 30, 0, Math.PI * 2);
+        ctx.arc(85, 5, 25, 0, Math.PI * 2);
+        ctx.arc(40, 15, 35, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+
     function drawMeadowHill() {
       ctx.save();
-      // Multi-layer rolling green hill gradient
+      // Soft Pastel Green Hill Gradient
       const hillGradient = ctx.createLinearGradient(0, height * 0.65, 0, height);
-      hillGradient.addColorStop(0, '#22c55e');
-      hillGradient.addColorStop(0.35, '#16a34a');
-      hillGradient.addColorStop(0.7, '#15803d');
-      hillGradient.addColorStop(1, '#0f5127');
+      hillGradient.addColorStop(0, '#a7f3d0');
+      hillGradient.addColorStop(0.4, '#6ee7b7');
+      hillGradient.addColorStop(0.8, '#34d399');
+      hillGradient.addColorStop(1, '#059669');
 
       ctx.fillStyle = hillGradient;
       ctx.beginPath();
@@ -947,8 +1183,6 @@
       const hasMouseActive = mouse.x > -500;
       for (let i = 0; i < grassBlades.length; i++) {
         const blade = grassBlades[i];
-
-        // Wind sway physics + Mouse interaction push force
         const windSway = Math.sin(time * 0.002 + blade.phase) * blade.maxSway;
         let mousePush = 0;
         if (hasMouseActive) {
@@ -983,7 +1217,6 @@
       const currentStemHeight = flower.stemHeight * flower.growth;
       const isMobile = width < 768;
 
-      // Wind sway & mouse reaction physics
       const windAngle = Math.sin(time * 0.0015 + flower.swayPhase) * 0.12;
       let mouseTilt = 0;
       let dist = 999;
@@ -991,42 +1224,36 @@
         const dx = flower.x - mouse.x;
         const dy = (flower.groundY - currentStemHeight) - mouse.y;
         dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          mouseTilt = (150 - dist) * 0.0015 * (dx > 0 ? 1 : -1);
+        if (dist < 140) {
+          mouseTilt = (140 - dist) * 0.0015 * (dx > 0 ? 1 : -1);
         }
       }
 
       const flowerHeadX = flower.x + Math.sin(windAngle + mouseTilt) * currentStemHeight;
       const flowerHeadY = flower.groundY - Math.cos(windAngle + mouseTilt) * currentStemHeight;
 
-      // 1. Draw Stem
-      ctx.strokeStyle = '#15803d';
-      ctx.lineWidth = Math.max(2, flower.size * 0.18);
+      // Stem
+      ctx.strokeStyle = '#059669';
+      ctx.lineWidth = Math.max(2.5, flower.size * 0.18);
       ctx.lineCap = 'round';
       ctx.beginPath();
       ctx.moveTo(flower.x, flower.groundY);
       ctx.quadraticCurveTo(flower.x, flower.groundY - currentStemHeight * 0.5, flowerHeadX, flowerHeadY);
       ctx.stroke();
 
-      // 2. Draw Leaves
+      // Leaves
       if (flower.growth > 0.4) {
         const leafY = flower.groundY - currentStemHeight * 0.4;
-        ctx.fillStyle = '#22c55e';
+        ctx.fillStyle = '#34d399';
         ctx.beginPath();
         ctx.ellipse(flower.x + 8, leafY, 10 * flower.growth, 4 * flower.growth, Math.PI / 4, 0, Math.PI * 2);
         ctx.ellipse(flower.x - 8, leafY - 5, 10 * flower.growth, 4 * flower.growth, -Math.PI / 4, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // 3. Draw Blooming Flower Head
+      // Flower Head
       ctx.translate(flowerHeadX, flowerHeadY);
       const currentSize = flower.size * flower.growth;
-
-      // Glow effect on hover (Disabled on mobile to prevent shadowBlur bottleneck)
-      if (!isMobile && dist < 100) {
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = flower.colors[0];
-      }
 
       const petalGrad = ctx.createLinearGradient(0, 0, currentSize, currentSize);
       petalGrad.addColorStop(0, flower.colors[0]);
@@ -1046,10 +1273,6 @@
 
       // Flower Center Core
       ctx.fillStyle = flower.type === 'sunflower' ? '#78350f' : '#fef08a';
-      if (!isMobile) {
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = '#fef08a';
-      }
       ctx.beginPath();
       ctx.arc(0, 0, currentSize * 0.35, 0, Math.PI * 2);
       ctx.fill();
@@ -1059,22 +1282,20 @@
 
     function animate(time) {
       ctx.clearRect(0, 0, width, height);
-      const isMobile = width < 768;
 
-      // Stars
+      // Clouds
+      drawClouds();
+
+      // Sparkles
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         star.alpha += star.twinkleSpeed * star.twinkleDir;
-        if (star.alpha >= 0.95) star.twinkleDir = -1;
-        else if (star.alpha <= 0.15) star.twinkleDir = 1;
+        if (star.alpha >= 0.9) star.twinkleDir = -1;
+        else if (star.alpha <= 0.2) star.twinkleDir = 1;
 
         ctx.save();
         ctx.globalAlpha = star.alpha;
         ctx.fillStyle = star.color;
-        if (!isMobile) {
-          ctx.shadowBlur = star.radius * 2;
-          ctx.shadowColor = star.color;
-        }
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -1092,7 +1313,7 @@
         drawFlower(gardenFlowers[i], time);
       }
 
-      // Heart Particles Explosion
+      // Heart / Sparkle Particles FX
       for (let i = heartParticles.length - 1; i >= 0; i--) {
         const p = heartParticles[i];
         p.x += p.speedX;
@@ -1109,10 +1330,6 @@
           ctx.rotate(p.rotation);
           ctx.globalAlpha = p.opacity;
           ctx.fillStyle = p.color;
-          if (!isMobile) {
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = p.color;
-          }
 
           const s = p.size / 15;
           ctx.beginPath();
@@ -1131,7 +1348,7 @@
     requestAnimationFrame(animate);
 
     /* ========================================================
-       FLOWER BLOOM INTRO OVERLAY LOGIC
+       INTRO OVERLAY LOGIC
        ======================================================== */
     let isBloomed = false;
 
@@ -1149,6 +1366,86 @@
         const overlay = document.getElementById('flowerIntro');
         overlay.classList.add('hidden');
       }, 1100);
+    }
+
+    /* ========================================================
+       WEB AUDIO SYNTHESIZER (LOFI PASTEL MUSIC BOX CHIME)
+       ======================================================== */
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let musicInterval = null;
+
+    function toggleMusic() {
+      const btn = document.getElementById('btnMusic');
+      const label = document.getElementById('musicLabel');
+
+      if (!isMusicPlaying) {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        isMusicPlaying = true;
+        label.innerText = 'Stop Musik';
+        btn.style.borderColor = '#ec4899';
+        btn.style.color = '#be185d';
+
+        // Play relaxing pastel music box melody loop
+        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 392.00, 293.66]; // C E G C A F G D
+        let noteIdx = 0;
+
+        playChime(notes[0]);
+        musicInterval = setInterval(() => {
+          noteIdx = (noteIdx + 1) % notes.length;
+          playChime(notes[noteIdx]);
+        }, 650);
+      } else {
+        isMusicPlaying = false;
+        clearInterval(musicInterval);
+        label.innerText = 'Musik Soft';
+        btn.style.borderColor = 'rgba(255, 255, 255, 0.9)';
+        btn.style.color = '#701a75';
+      }
+    }
+
+    function playChime(freq) {
+      if (!audioCtx || !isMusicPlaying) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.4);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1.4);
+    }
+
+    /* ========================================================
+       SECRET LETTER MODAL & THEME SWITCHER
+       ======================================================== */
+    function openSecretLetter() {
+      document.getElementById('letterModal').classList.add('active');
+    }
+
+    function closeSecretLetter() {
+      document.getElementById('letterModal').classList.remove('active');
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('theme-blue');
+      const btn = document.getElementById('btnTheme');
+      if (document.body.classList.contains('theme-blue')) {
+        btn.innerHTML = '<span>☁️</span> <span>Sky Pastel</span>';
+      } else {
+        btn.innerHTML = '<span>🌸</span> <span>Tema Pastel</span>';
+      }
     }
 
     /* ========================================================
@@ -1229,7 +1526,7 @@
       document.getElementById('sumActivity').innerText = selectedActivity;
       document.getElementById('sumTime').innerText = selectedTime;
 
-      const textMsg = `Boleh deh ayo! 🥰%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}`;
+      const textMsg = `Boleh deh ayo! 🥰%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}%0A%0AMakasi kupon es krimnya yaa 🍦`;
       document.getElementById('waLink').href = `https://wa.me/6285795132612?text=${textMsg}`;
 
       document.getElementById('step2').classList.remove('active');
