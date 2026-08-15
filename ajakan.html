@@ -64,41 +64,7 @@
       pointer-events: auto;
     }
 
-    /* Top Floating Utility Bar */
-    .top-floating-bar {
-      position: fixed;
-      top: 18px;
-      right: 20px;
-      z-index: 50;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
 
-    .pill-btn {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
-      color: #701a75;
-      padding: 8px 18px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.15);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      user-select: none;
-    }
-
-    .pill-btn:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(244, 114, 182, 0.25);
-      background: #ffffff;
-    }
 
     /* Floating Interactive Hint Pill */
     .garden-hint-pill {
@@ -501,68 +467,7 @@
       color: #475569;
     }
 
-    /* Secret Love Letter Modal */
-    .letter-modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.4s ease;
-    }
 
-    .letter-modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .letter-card {
-      background: #fffdfa;
-      border: 2px solid #fbcfe8;
-      border-radius: 28px;
-      max-width: 480px;
-      width: 100%;
-      padding: 2.2rem;
-      box-shadow: 0 25px 60px rgba(244, 114, 182, 0.25);
-      text-align: center;
-      position: relative;
-      transform: scale(0.9) translateY(20px);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .letter-modal-overlay.active .letter-card {
-      transform: scale(1) translateY(0);
-    }
-
-    .letter-header {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
-      color: #be185d;
-      margin-bottom: 1rem;
-    }
-
-    .letter-body {
-      font-family: 'Caveat', cursive;
-      font-size: 1.35rem;
-      color: #334155;
-      line-height: 1.6;
-      text-align: left;
-      background: #fff5f8;
-      padding: 1.4rem;
-      border-radius: 18px;
-      border: 1px dashed #f472b6;
-      margin-bottom: 1.5rem;
-    }
 
     /* BLOOMING FLOWER INTRO OVERLAY */
     .flower-intro-overlay {
@@ -714,18 +619,7 @@
     </button>
   </div>
 
-  <!-- Top Floating Utility Controls -->
-  <div class="top-floating-bar">
-    <button class="pill-btn" onclick="toggleMusic()" id="btnMusic">
-      <span id="musicLabel">Musik Soft</span>
-    </button>
-    <button class="pill-btn" onclick="openSecretLetter()">
-      <span>Surat Rahasia</span>
-    </button>
-    <button class="pill-btn" onclick="toggleTheme()" id="btnTheme">
-      <span>Tema Pastel</span>
-    </button>
-  </div>
+
 
   <!-- Interactive Fullscreen Canvas -->
   <canvas id="bgCanvas"></canvas>
@@ -846,19 +740,7 @@
     </div>
   </main>
 
-  <!-- Secret Love Letter Modal -->
-  <div class="letter-modal-overlay" id="letterModal">
-    <div class="letter-card">
-      <div class="letter-header">Pesan Rahasia</div>
-      <div class="letter-body">
-        "Haiii Putri Ayu Rosmalia...<br><br>
-        Semoga harimu menyenangkan dan badannya cepat enakan yaa. 
-        Jangan lupa istirahat yang cukup dan makan yang teratur.<br><br>
-        Aku cuma mau bilang kalau aku seneng banget bisa kenal dan ngobrol sama kamu. Kalau kamu butuh temen jalan atau sekedar refreshing, aku selalu siap menemani!"
-      </div>
-      <button class="btn-primary" onclick="closeSecretLetter()">Tutup Pesan</button>
-    </div>
-  </div>
+
 
   <script>
     /* ==============================================================================
@@ -916,7 +798,7 @@
 
     function handlePlantEvent(e) {
       const target = e.target;
-      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container') || target.closest('.top-floating-bar') || target.closest('.letter-card')) {
+      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container')) {
         return;
       }
       const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : width / 2);
@@ -1286,84 +1168,7 @@
       }, 1100);
     }
 
-    /* ========================================================
-       WEB AUDIO SYNTHESIZER
-       ======================================================== */
-    let audioCtx = null;
-    let isMusicPlaying = false;
-    let musicInterval = null;
 
-    function toggleMusic() {
-      const btn = document.getElementById('btnMusic');
-      const label = document.getElementById('musicLabel');
-
-      if (!isMusicPlaying) {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        isMusicPlaying = true;
-        label.innerText = 'Stop Musik';
-        btn.style.borderColor = '#ec4899';
-        btn.style.color = '#be185d';
-
-        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 392.00, 293.66];
-        let noteIdx = 0;
-
-        playChime(notes[0]);
-        musicInterval = setInterval(() => {
-          noteIdx = (noteIdx + 1) % notes.length;
-          playChime(notes[noteIdx]);
-        }, 650);
-      } else {
-        isMusicPlaying = false;
-        clearInterval(musicInterval);
-        label.innerText = 'Musik Soft';
-        btn.style.borderColor = 'rgba(255, 255, 255, 0.9)';
-        btn.style.color = '#701a75';
-      }
-    }
-
-    function playChime(freq) {
-      if (!audioCtx || !isMusicPlaying) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.4);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + 1.4);
-    }
-
-    /* ========================================================
-       SECRET LETTER MODAL & THEME SWITCHER
-       ======================================================== */
-    function openSecretLetter() {
-      document.getElementById('letterModal').classList.add('active');
-    }
-
-    function closeSecretLetter() {
-      document.getElementById('letterModal').classList.remove('active');
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle('theme-blue');
-      const btn = document.getElementById('btnTheme');
-      if (document.body.classList.contains('theme-blue')) {
-        btn.innerHTML = '<span>Sky Pastel</span>';
-      } else {
-        btn.innerHTML = '<span>Tema Pastel</span>';
-      }
-    }
 
     /* ========================================================
        INTERACTIVE INVITATION LOGIC
