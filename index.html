@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajakan Spesial ✨ | Untuk Putri Ayu Rosmalia</title>
+  <title>Ajakan Spesial | Untuk Putri Ayu Rosmalia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,8 +16,8 @@
       /* Soft Aesthetic Pastel Palette */
       --bg-gradient-pink: linear-gradient(135deg, #fff0f5 0%, #f3e8ff 35%, #fce7f3 70%, #ffedd5 100%);
       --bg-gradient-blue: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 35%, #f3e8ff 70%, #fce7f3 100%);
-      --glass-bg: rgba(255, 255, 255, 0.72);
-      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.9);
       --glass-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.18), 0 10px 25px -5px rgba(192, 132, 252, 0.12);
       
       --text-main: #334155;
@@ -28,7 +28,6 @@
       --accent-pink: #ec4899;
       --accent-pink-glow: rgba(244, 114, 182, 0.45);
       --accent-gradient: linear-gradient(135deg, #f472b6 0%, #fb7185 50%, #c084fc 100%);
-      --accent-secondary: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
     }
 
     * {
@@ -54,7 +53,7 @@
       background: var(--bg-gradient-blue);
     }
 
-    /* Fullscreen Interactive Canvas (Pastel Sky + Meadow) */
+    /* Fullscreen Interactive Canvas */
     #bgCanvas {
       position: fixed;
       top: 0;
@@ -65,7 +64,7 @@
       pointer-events: auto;
     }
 
-    /* Top Floating Utility Bar (Music & Secret Letter & Theme Switcher) */
+    /* Top Floating Utility Bar */
     .top-floating-bar {
       position: fixed;
       top: 18px;
@@ -82,7 +81,7 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1.5px solid rgba(255, 255, 255, 0.9);
       color: #701a75;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 700;
@@ -108,10 +107,10 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1.5px solid rgba(244, 114, 182, 0.3);
+      border: 1.5px solid rgba(244, 114, 182, 0.35);
       color: #831843;
       padding: 9px 22px;
       border-radius: 9999px;
@@ -153,8 +152,7 @@
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border: 1.5px solid #fbcfe8;
       color: #db2777;
       font-weight: 700;
@@ -264,7 +262,7 @@
       font-size: 1.05rem;
       color: #475569;
       line-height: 1.8;
-      background: rgba(255, 241, 242, 0.75);
+      background: rgba(255, 241, 242, 0.8);
       border-radius: 22px;
       padding: 1.4rem 1.6rem;
       border: 1.5px dashed #fbcfe8;
@@ -301,7 +299,7 @@
       letter-spacing: 0.3px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
     }
 
     .btn-primary:hover {
@@ -336,17 +334,17 @@
     }
 
     .option-card {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 2px solid #f1f5f9;
-      border-radius: 22px;
-      padding: 14px 10px;
+      border-radius: 20px;
+      padding: 16px 12px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 6px;
+      gap: 4px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     }
 
@@ -364,23 +362,14 @@
       transform: translateY(-2px);
     }
 
-    .option-icon {
-      font-size: 32px;
-      transition: transform 0.3s ease;
-    }
-
-    .option-card:hover .option-icon {
-      transform: scale(1.15) rotate(5deg);
-    }
-
     .option-title {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: #831843;
     }
 
     .option-desc {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: #64748b;
     }
 
@@ -446,12 +435,12 @@
       box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
     }
 
-    /* Step 3 Summary & Coupon Card */
+    /* Step 3 Summary */
     .summary-card {
-      background: rgba(255, 241, 242, 0.8);
+      background: rgba(255, 241, 242, 0.85);
       border: 2px dashed #fbcfe8;
       border-radius: 24px;
-      padding: 1.5rem;
+      padding: 1.6rem;
       margin-bottom: 1.6rem;
       text-align: left;
     }
@@ -459,49 +448,17 @@
     .summary-item {
       display: flex;
       align-items: center;
-      gap: 14px;
       margin-bottom: 12px;
       font-size: 0.98rem;
       color: #475569;
     }
 
+    .summary-item:last-child {
+      margin-bottom: 0;
+    }
+
     .summary-item strong {
       color: #be185d;
-    }
-
-    /* Love Coupon Bonus Badge */
-    .love-coupon {
-      background: linear-gradient(135deg, #fff1f2 0%, #fef3c7 100%);
-      border: 2px dashed #f59e0b;
-      border-radius: 18px;
-      padding: 12px 16px;
-      margin-top: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
-    }
-
-    .love-coupon-icon {
-      font-size: 28px;
-    }
-
-    .love-coupon-text {
-      text-align: left;
-    }
-
-    .love-coupon-title {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: #b45309;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .love-coupon-sub {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #78350f;
     }
 
     .btn-wa {
@@ -517,7 +474,7 @@
       box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
       text-decoration: none;
       font-family: 'Outfit', sans-serif;
     }
@@ -724,7 +681,7 @@
       letter-spacing: 0.5px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
     }
 
     .btn-bloom:hover {
@@ -738,7 +695,7 @@
 
   <!-- Blooming Flower Intro Overlay -->
   <div class="flower-intro-overlay" id="flowerIntro">
-    <div class="intro-title">🌸 Taman Bunga Pastel Mekar 🌸</div>
+    <div class="intro-title">Taman Bunga Pastel Mekar</div>
 
     <div class="flower-bloom-container bud" id="flowerBloom" onclick="triggerBloom()">
       <div class="bloom-center"></div>
@@ -753,36 +710,36 @@
     </div>
 
     <button class="btn-bloom" onclick="triggerBloom()">
-      <span>Buka Kebun Bunga ✨</span>
+      <span>Buka Kebun Bunga</span>
     </button>
   </div>
 
   <!-- Top Floating Utility Controls -->
   <div class="top-floating-bar">
     <button class="pill-btn" onclick="toggleMusic()" id="btnMusic">
-      <span>🎵</span> <span id="musicLabel">Musik Soft</span>
+      <span id="musicLabel">Musik Soft</span>
     </button>
     <button class="pill-btn" onclick="openSecretLetter()">
-      <span>✉️</span> <span>Surat Rahasia</span>
+      <span>Surat Rahasia</span>
     </button>
     <button class="pill-btn" onclick="toggleTheme()" id="btnTheme">
-      <span>🌸</span> <span>Tema Pastel</span>
+      <span>Tema Pastel</span>
     </button>
   </div>
 
-  <!-- Interactive Fullscreen Canvas (Clouds + Sparkles + Pastel Meadow) -->
+  <!-- Interactive Fullscreen Canvas -->
   <canvas id="bgCanvas"></canvas>
 
   <!-- Floating Interactive Hint Pill -->
   <div class="garden-hint-pill">
-    <span>✨ Klik di layar mana aja buat nanam bunga pastel!</span>
+    <span>Klik di layar mana aja buat nanam bunga pastel!</span>
   </div>
 
   <!-- Main Hero Section -->
   <main class="hero-container">
 
     <div class="hero-tag">
-      <span>✨ Undangan Spesial</span>
+      <span>Undangan Spesial</span>
     </div>
 
     <h1 class="hero-heading">Haiii Putri Ayu <span>Rosmalia.</span></h1>
@@ -793,21 +750,21 @@
       <!-- STEP 1: Main Proposal Invitation -->
       <div class="step-content active" id="step1">
         <div class="invitation-text">
-          "Bosen gak sih dikosan? 🥺<br>
+          "Bosen gak sih dikosan?<br>
           Mau ga kalau aku ajak main atau jalan berdua?<br>
-          <strong>Itu juga kalau kamu udah enakan badannya yaa 💕</strong>"
+          <strong>Itu juga kalau kamu udah enakan badannya yaa</strong>"
         </div>
 
         <div class="button-group" id="btnGroup">
-          <button class="btn-primary" onclick="acceptInvitation()">Mau Banget! ➔</button>
-          <button class="btn-evade" id="btnEvade" onmouseover="evadeButton()" onclick="evadeButton()">Enggak Ah 😜</button>
+          <button class="btn-primary" onclick="acceptInvitation()">Mau Banget!</button>
+          <button class="btn-evade" id="btnEvade" onmouseover="evadeButton()" onclick="evadeButton()">Enggak Ah</button>
         </div>
       </div>
 
       <!-- STEP 2: Choose Activity & Time -->
       <div class="step-content" id="step2">
         <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #be185d; margin-bottom: 0.2rem;">
-          Yaaaaay! 🎉
+          Yaaaaay!
         </div>
         <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #831843;">
           Mau Main Ke Mana?
@@ -816,38 +773,32 @@
         <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; font-weight: 600;">Pilih aktivitas favorit kamu :</p>
 
         <div class="options-grid">
-          <div class="option-card selected" onclick="selectActivity(this, 'Bebas Gimana Kamu ✨')">
-            <div class="option-icon">✨</div>
+          <div class="option-card selected" onclick="selectActivity(this, 'Bebas Gimana Kamu')">
             <div class="option-title">Bebas Kamu</div>
             <div class="option-desc">Ikut aja dehh</div>
           </div>
 
-          <div class="option-card" onclick="selectActivity(this, 'Cafe Hopping & Ngopi ☕')">
-            <div class="option-icon">☕</div>
+          <div class="option-card" onclick="selectActivity(this, 'Cafe Hopping & Ngopi')">
             <div class="option-title">Cafe Hopping</div>
             <div class="option-desc">Nyantai & ngopi</div>
           </div>
 
-          <div class="option-card" onclick="selectActivity(this, 'Night Ride 🏍️')">
-            <div class="option-icon">🏍️</div>
+          <div class="option-card" onclick="selectActivity(this, 'Night Ride')">
             <div class="option-title">Night Ride</div>
             <div class="option-desc">Keliling malam</div>
           </div>
 
-          <div class="option-card" onclick="selectActivity(this, 'Wisata Alam 🌿')">
-            <div class="option-icon">🌿</div>
+          <div class="option-card" onclick="selectActivity(this, 'Wisata Alam')">
             <div class="option-title">Wisata Alam</div>
             <div class="option-desc">Cari udara segar</div>
           </div>
 
-          <div class="option-card" onclick="selectActivity(this, 'Photobooth Lucu 📸')">
-            <div class="option-icon">📸</div>
+          <div class="option-card" onclick="selectActivity(this, 'Photobooth Lucu')">
             <div class="option-title">Photobooth</div>
             <div class="option-desc">Foto berdua</div>
           </div>
 
-          <div class="option-card" onclick="selectActivity(this, 'Main ke Playground 🎠')">
-            <div class="option-icon">🎠</div>
+          <div class="option-card" onclick="selectActivity(this, 'Main ke Playground')">
             <div class="option-title">Playground</div>
             <div class="option-desc">Seru-seruan</div>
           </div>
@@ -859,9 +810,9 @@
             placeholder="Tulis waktu / hari sendiri... (misal: Sabtu jam 7 malam)"
             oninput="updateTimeFromInput(this.value)">
           <div class="time-container" style="margin-top: 10px; margin-bottom: 0;">
-            <div class="time-pill" onclick="selectQuickTime('Weekend ini 💖')">Weekend ini</div>
-            <div class="time-pill" onclick="selectQuickTime('Malam ini 🌙')">Malam ini</div>
-            <div class="time-pill" onclick="selectQuickTime('Kapan aja kamu senggang 🌸')">Kapan aja kamu senggang</div>
+            <div class="time-pill" onclick="selectQuickTime('Weekend ini')">Weekend ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Malam ini')">Malam ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Kapan aja kamu senggang')">Kapan aja kamu senggang</div>
           </div>
         </div>
 
@@ -871,38 +822,26 @@
       <!-- STEP 3: Final Confirmation & WhatsApp -->
       <div class="step-content" id="step3">
         <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #be185d; margin-bottom: 0.2rem;">
-          Deal! 🤝
+          Deal!
         </div>
         <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1.2rem; color: #831843;">
-          Janji Jalan Berdua Dibuat! 💖
+          Janji Jalan Berdua Dibuat!
         </h2>
 
         <div class="summary-card">
           <div class="summary-item">
-            <span style="font-size: 24px;">📍</span>
-            <div>Aktivitas: <strong id="sumActivity">Bebas Gimana Kamu ✨</strong></div>
+            <div>Aktivitas: <strong id="sumActivity">Bebas Gimana Kamu</strong></div>
           </div>
           <div class="summary-item">
-            <span style="font-size: 24px;">⏰</span>
-            <div>Waktu: <strong id="sumTime">Kapan aja kamu senggang 💖</strong></div>
+            <div>Waktu: <strong id="sumTime">Kapan aja kamu senggang</strong></div>
           </div>
           <div class="summary-item">
-            <span style="font-size: 24px;">💬</span>
-            <div>Pesan: <strong>"Gak sabar mau jalan bareng kamu! 🥰"</strong></div>
-          </div>
-
-          <!-- Love Coupon Gift Badge -->
-          <div class="love-coupon">
-            <div class="love-coupon-icon">🎁</div>
-            <div class="love-coupon-text">
-              <div class="love-coupon-title">Bonus Kupon Spesial</div>
-              <div class="love-coupon-sub">Gratis Es Krim + Hug 🍦🫂</div>
-            </div>
+            <div>Pesan: <strong>"Gak sabar mau jalan bareng kamu!"</strong></div>
           </div>
         </div>
 
         <a id="waLink" class="btn-wa" target="_blank" href="#">
-          <span>Kirim Konfirmasi ke WhatsApp</span> 💬
+          <span>Kirim Konfirmasi ke WhatsApp</span>
         </a>
         <br>
         <button class="btn-secondary" onclick="goToStep2()">← Ubah Pilihan</button>
@@ -914,14 +853,14 @@
   <!-- Secret Love Letter Modal -->
   <div class="letter-modal-overlay" id="letterModal">
     <div class="letter-card">
-      <div class="letter-header">Pesan Rahasia ✉️</div>
+      <div class="letter-header">Pesan Rahasia</div>
       <div class="letter-body">
-        "Haiii Putri Ayu Rosmalia... ✨<br><br>
+        "Haiii Putri Ayu Rosmalia...<br><br>
         Semoga harimu menyenangkan dan badannya cepat enakan yaa. 
         Jangan lupa istirahat yang cukup dan makan yang teratur.<br><br>
-        Aku cuma mau bilang kalau aku seneng banget bisa kenal dan ngobrol sama kamu. Kalau kamu butuh temen jalan atau sekedar refreshing, aku selalu siap menemani! 💕"
+        Aku cuma mau bilang kalau aku seneng banget bisa kenal dan ngobrol sama kamu. Kalau kamu butuh temen jalan atau sekedar refreshing, aku selalu siap menemani!"
       </div>
-      <button class="btn-primary" onclick="closeSecretLetter()">Tutup Pesan 💖</button>
+      <button class="btn-primary" onclick="closeSecretLetter()">Tutup Pesan</button>
     </div>
   </div>
 
@@ -942,7 +881,7 @@
     let gardenFlowers = [];
     let heartParticles = [];
 
-    // Track mouse & touch position for interactive garden physics
+    // Track mouse & touch position
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -963,7 +902,6 @@
       initElements();
     });
 
-    // Create subtle floating mouse trail sparkles
     function createTrailParticle(x, y) {
       if (Math.random() > 0.4) return;
       heartParticles.push({
@@ -980,7 +918,6 @@
       });
     }
 
-    // Plant a new blooming flower interactively when clicking/touching anywhere!
     function handlePlantEvent(e) {
       const target = e.target;
       if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container') || target.closest('.top-floating-bar') || target.closest('.letter-card')) {
@@ -1013,7 +950,6 @@
       gardenFlowers = [];
       const isMobile = width < 768;
 
-      // 1. Soft Pastel Twinkling Sparkles
       const numStars = Math.floor((width * height) / (isMobile ? 12000 : 7000));
       for (let i = 0; i < Math.max(40, numStars); i++) {
         stars.push({
@@ -1027,7 +963,6 @@
         });
       }
 
-      // 2. Soft Pastel Floating Clouds
       const cloudCount = isMobile ? 3 : 5;
       for (let i = 0; i < cloudCount; i++) {
         clouds.push({
@@ -1039,7 +974,6 @@
         });
       }
 
-      // 3. Procedural Swaying Grass Blades (Pastel Mint Green)
       const grassCount = Math.floor(width / (isMobile ? 7 : 3.5));
       for (let i = 0; i < grassCount; i++) {
         const x = i * (width / grassCount) + (Math.random() * 4 - 2);
@@ -1057,7 +991,6 @@
         });
       }
 
-      // 4. Pre-planted Interactive Pastel Flowers
       const initialFlowersCount = Math.floor(width / (isMobile ? 30 : 25));
       for (let i = 0; i < initialFlowersCount; i++) {
         const x = Math.random() * width;
@@ -1074,14 +1007,13 @@
       const stemHeight = baseStem + extraStem;
 
       const flowerTypes = ['rose', 'tulip', 'daisy', 'sunflower', 'cosmos', 'heart'];
-      // Vibrant Soft Pastel Color Pairs
       const flowerColors = [
-        ['#f472b6', '#fb7185'], // Sakura Pastel Pink
-        ['#c084fc', '#e879f9'], // Soft Lavender Purple
-        ['#38bdf8', '#818cf8'], // Pastel Sky Blue
-        ['#facc15', '#fde047'], // Buttercup Yellow
-        ['#34d399', '#a7f3d0'], // Mint Soft Green
-        ['#fb923c', '#fdba74']  // Warm Pastel Peach
+        ['#f472b6', '#fb7185'],
+        ['#c084fc', '#e879f9'],
+        ['#38bdf8', '#818cf8'],
+        ['#facc15', '#fde047'],
+        ['#34d399', '#a7f3d0'],
+        ['#fb923c', '#fdba74']
       ];
       const selectedType = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
       const selectedColors = flowerColors[Math.floor(Math.random() * flowerColors.length)];
@@ -1158,7 +1090,6 @@
 
     function drawMeadowHill() {
       ctx.save();
-      // Soft Pastel Green Hill Gradient
       const hillGradient = ctx.createLinearGradient(0, height * 0.65, 0, height);
       hillGradient.addColorStop(0, '#a7f3d0');
       hillGradient.addColorStop(0.4, '#6ee7b7');
@@ -1215,15 +1146,13 @@
 
       ctx.save();
       const currentStemHeight = flower.stemHeight * flower.growth;
-      const isMobile = width < 768;
 
       const windAngle = Math.sin(time * 0.0015 + flower.swayPhase) * 0.12;
       let mouseTilt = 0;
-      let dist = 999;
       if (mouse.x > -500) {
         const dx = flower.x - mouse.x;
         const dy = (flower.groundY - currentStemHeight) - mouse.y;
-        dist = Math.sqrt(dx * dx + dy * dy);
+        const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 140) {
           mouseTilt = (140 - dist) * 0.0015 * (dx > 0 ? 1 : -1);
         }
@@ -1271,7 +1200,7 @@
         ctx.fill();
       }
 
-      // Flower Center Core
+      // Center Core
       ctx.fillStyle = flower.type === 'sunflower' ? '#78350f' : '#fef08a';
       ctx.beginPath();
       ctx.arc(0, 0, currentSize * 0.35, 0, Math.PI * 2);
@@ -1283,10 +1212,8 @@
     function animate(time) {
       ctx.clearRect(0, 0, width, height);
 
-      // Clouds
       drawClouds();
 
-      // Sparkles
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         star.alpha += star.twinkleSpeed * star.twinkleDir;
@@ -1302,18 +1229,13 @@
         ctx.restore();
       }
 
-      // Meadow Hill Background
       drawMeadowHill();
-
-      // Grass Blades
       drawGrass(time);
 
-      // Interactive Flowers
       for (let i = 0; i < gardenFlowers.length; i++) {
         drawFlower(gardenFlowers[i], time);
       }
 
-      // Heart / Sparkle Particles FX
       for (let i = heartParticles.length - 1; i >= 0; i--) {
         const p = heartParticles[i];
         p.x += p.speedX;
@@ -1369,7 +1291,7 @@
     }
 
     /* ========================================================
-       WEB AUDIO SYNTHESIZER (LOFI PASTEL MUSIC BOX CHIME)
+       WEB AUDIO SYNTHESIZER
        ======================================================== */
     let audioCtx = null;
     let isMusicPlaying = false;
@@ -1391,8 +1313,7 @@
         btn.style.borderColor = '#ec4899';
         btn.style.color = '#be185d';
 
-        // Play relaxing pastel music box melody loop
-        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 392.00, 293.66]; // C E G C A F G D
+        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 392.00, 293.66];
         let noteIdx = 0;
 
         playChime(notes[0]);
@@ -1442,17 +1363,17 @@
       document.body.classList.toggle('theme-blue');
       const btn = document.getElementById('btnTheme');
       if (document.body.classList.contains('theme-blue')) {
-        btn.innerHTML = '<span>☁️</span> <span>Sky Pastel</span>';
+        btn.innerHTML = '<span>Sky Pastel</span>';
       } else {
-        btn.innerHTML = '<span>🌸</span> <span>Tema Pastel</span>';
+        btn.innerHTML = '<span>Tema Pastel</span>';
       }
     }
 
     /* ========================================================
        INTERACTIVE INVITATION LOGIC
        ======================================================== */
-    let selectedActivity = 'Bebas Gimana Kamu ✨';
-    let selectedTime = 'Kapan aja kamu senggang 💖';
+    let selectedActivity = 'Bebas Gimana Kamu';
+    let selectedTime = 'Kapan aja kamu senggang';
 
     function evadeButton() {
       const btn = document.getElementById('btnEvade');
@@ -1470,11 +1391,11 @@
       btn.style.top = randomY + 'px';
 
       const funnyTexts = [
-        'Eits gak bisa! 😜',
-        'Coba klik lagi! 🏃‍♂️',
-        'Harus klik Mau! 🥰',
-        'Ayo dong main! ✨',
-        'Nggak bisa ditolak 💖'
+        'Eits gak bisa!',
+        'Coba klik lagi!',
+        'Harus klik Mau!',
+        'Ayo dong main!',
+        'Nggak bisa ditolak'
       ];
       btn.innerText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
     }
@@ -1499,7 +1420,7 @@
       if (val && val.trim() !== '') {
         selectedTime = val.trim();
       } else {
-        selectedTime = 'Kapan aja kamu senggang 💖';
+        selectedTime = 'Kapan aja kamu senggang';
       }
       document.querySelectorAll('.time-pill').forEach(t => t.classList.remove('selected'));
     }
@@ -1526,7 +1447,7 @@
       document.getElementById('sumActivity').innerText = selectedActivity;
       document.getElementById('sumTime').innerText = selectedTime;
 
-      const textMsg = `Boleh deh ayo! 🥰%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}%0A%0AMakasi kupon es krimnya yaa 🍦`;
+      const textMsg = `Boleh deh ayo!%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}`;
       document.getElementById('waLink').href = `https://wa.me/6285795132612?text=${textMsg}`;
 
       document.getElementById('step2').classList.remove('active');
