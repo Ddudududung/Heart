@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(ellipse at 50% 20%, #4f60f6 0%, #3646d6 40%, #1e2687 75%, #0f144d 100%);
+      --glass-bg: rgba(255, 255, 255, 0.14);
+      --glass-border: rgba(255, 255, 255, 0.32);
+      --glass-shadow: 0 25px 50px -12px rgba(13, 19, 78, 0.55);
+      --accent-pink: #ff3b7b;
+      --accent-pink-glow: rgba(255, 59, 123, 0.6);
+      --accent-gradient: linear-gradient(135deg, #ff3b7b 0%, #ff6b9d 50%, #f472b6 100%);
+      --text-main: #ffffff;
+      --text-sub: #dbeafe;
+      --text-muted: #93c5fd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #1e2687;
+      background: var(--bg-gradient);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fullscreen Interactive Canvas (Sky + Meadow Garden) */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: auto;
+      /* Allows direct interaction with flower garden */
+    }
+
+    /* Floating Interactive Hint Pill */
+    .garden-hint-pill {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      background: rgba(15, 20, 77, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 157, 0.3);
+      pointer-events: none;
+      animation: floatPill 3s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @keyframes floatPill {
+      0% {
+        transform: translate(-50%, 0);
+      }
+
+      100% {
+        transform: translate(-50%, -6px);
+      }
+    }
+
+
+    /* ==========================================
+       MAIN HERO LAYOUT
+       ========================================== */
+    .hero-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 900px;
+      padding: 3rem 1.5rem 6rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: auto;
+      pointer-events: none;
+      /* Let clicks pass through to canvas when clicking outside cards */
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .hero-container * {
+      pointer-events: auto;
+      /* Re-enable pointer events for interactive buttons & cards */
+    }
+
+    .hero-heading-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.9rem;
+      color: #ffb4d2;
+      text-shadow: 0 0 12px rgba(255, 180, 210, 0.7);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-heading span {
+      background: linear-gradient(135deg, #ffffff 30%, #ffb4d2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glass Card Container */
+    .card-container {
+      width: 100%;
+      max-width: 550px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 28px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 2.2rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      transform: translateZ(0);
+    }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 768px) {
+      .hero-container {
+        padding: 1.5rem 0.8rem 140px 0.8rem;
+      }
+
+      .hero-heading {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .card-container {
+        max-width: 95%;
+        padding: 1.5rem 1.1rem;
+        border-radius: 22px;
+        background: rgba(15, 22, 80, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .invitation-text {
+        padding: 1.1rem 1rem;
+        font-size: 0.98rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .garden-hint-pill {
+        bottom: 12px;
+        font-size: 0.8rem;
+        padding: 8px 16px;
+        width: 90%;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+    }
+
+    /* Step Content */
+    .step-content {
+      display: none;
+      animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .step-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .invitation-text {
+      font-size: 1.05rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+      background: rgba(15, 20, 77, 0.55);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      margin-bottom: 1.8rem;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      min-height: 60px;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      padding: 15px 36px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 25px var(--accent-pink-glow);
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255, 59, 123, 0.75);
+    }
+
+    .btn-evade {
+      background: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+      padding: 14px 26px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      user-select: none;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Activity Grid Options */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.6rem;
+      text-align: left;
+    }
+
+    .option-card {
+      background: rgba(15, 20, 77, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 14px 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .option-card:hover {
+      border-color: #ff6b9d;
+      background: rgba(255, 107, 157, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .option-card.selected {
+      border-color: var(--accent-pink);
+      background: linear-gradient(135deg, rgba(255, 59, 123, 0.35), rgba(167, 139, 250, 0.35));
+      box-shadow: 0 0 22px rgba(255, 59, 123, 0.45);
+    }
+
+    .option-icon {
+      font-size: 30px;
+    }
+
+    .option-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .option-desc {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    /* Custom Time Input Field */
+    .custom-input {
+      width: 100%;
+      background: rgba(15, 20, 77, 0.65);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      outline: none;
+      transition: all 0.3s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-align: center;
+    }
+
+    .custom-input::placeholder {
+      color: #93c5fd;
+      opacity: 0.75;
+      font-weight: 400;
+    }
+
+    .custom-input:focus {
+      border-color: #ff6b9d;
+      box-shadow: 0 0 20px rgba(255, 59, 123, 0.45);
+      background: rgba(15, 20, 77, 0.85);
+    }
+
+    /* Time Picker Pills */
+    .time-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+
+    .time-pill {
+      background: rgba(15, 20, 77, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .time-pill:hover {
+      border-color: #ff6b9d;
+      color: #ffffff;
+    }
+
+    .time-pill.selected {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 0 18px var(--accent-pink-glow);
+    }
+
+    /* Step 3 Summary */
+    .summary-card {
+      background: rgba(15, 20, 77, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.6rem;
+      text-align: left;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-sub);
+    }
+
+    .summary-item strong {
+      color: #ffffff;
+    }
+
+    .btn-wa {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      padding: 15px 34px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-wa:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-muted);
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 12px;
+      text-decoration: underline;
+      font-family: inherit;
+    }
+
+    .btn-secondary:hover {
+      color: #ffffff;
+    }
+
+    /* ==========================================
+       BLOOMING FLOWER INTRO OVERLAY
+       ========================================== */
+    .flower-intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(ellipse at 50% 25%, #4657ed 0%, #202b8c 60%, #0d1245 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s;
+    }
+
+    .flower-intro-overlay.hidden {
+      opacity: 0;
+      transform: scale(1.1);
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .intro-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      color: #ffb4d2;
+      text-shadow: 0 0 18px rgba(255, 180, 210, 0.8);
+      margin-bottom: 2.2rem;
+      animation: pulseText 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0% {
+        text-shadow: 0 0 12px rgba(255, 180, 210, 0.6);
+        transform: scale(0.98);
+      }
+
+      100% {
+        text-shadow: 0 0 25px rgba(255, 59, 123, 1);
+        transform: scale(1.02);
+      }
+    }
+
+    .flower-bloom-container {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      cursor: pointer;
+      margin-bottom: 2.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .flower-bloom-container:hover {
+      transform: scale(1.08);
+    }
+
+    .bloom-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      background: radial-gradient(circle, #fff3b0 0%, #ffc107 80%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 25px #ffc107, inset 0 0 10px rgba(255, 255, 255, 0.8);
+      z-index: 5;
+    }
+
+    .bloom-petal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45px;
+      height: 75px;
+      background: linear-gradient(135deg, #ff85b0 0%, #ff3b7b 100%);
+      border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+      transform-origin: bottom center;
+      box-shadow: 0 0 18px rgba(255, 59, 123, 0.55);
+      transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .flower-bloom-container.bud .bloom-petal {
+      height: 55px;
+      width: 30px;
+      opacity: 0.85;
+    }
+
+    .p1 {
+      transform: translate(-50%, -100%) rotate(0deg);
+    }
+
+    .p2 {
+      transform: translate(-50%, -100%) rotate(45deg);
+    }
+
+    .p3 {
+      transform: translate(-50%, -100%) rotate(90deg);
+    }
+
+    .p4 {
+      transform: translate(-50%, -100%) rotate(135deg);
+    }
+
+    .p5 {
+      transform: translate(-50%, -100%) rotate(180deg);
+    }
+
+    .p6 {
+      transform: translate(-50%, -100%) rotate(225deg);
+    }
+
+    .p7 {
+      transform: translate(-50%, -100%) rotate(270deg);
+    }
+
+    .p8 {
+      transform: translate(-50%, -100%) rotate(315deg);
+    }
+
+    .flower-bloom-container.bloomed .bloom-petal {
+      height: 80px;
+      width: 50px;
+      opacity: 1;
+      box-shadow: 0 0 25px rgba(255, 107, 157, 0.9);
+    }
+
+    .btn-bloom {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      padding: 16px 40px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 30px var(--accent-pink-glow);
+      transition: all 0.3s ease;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-bloom:hover {
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 8px 35px rgba(255, 59, 123, 0.85);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Blooming Flower Intro Overlay -->
+  <div class="flower-intro-overlay" id="flowerIntro">
+    <div class="intro-title"> Sebuah Kebun Bunga Mekar </div>
+
+    <div class="flower-bloom-container bud" id="flowerBloom" onclick="triggerBloom()">
+      <div class="bloom-center"></div>
+      <div class="bloom-petal p1"></div>
+      <div class="bloom-petal p2"></div>
+      <div class="bloom-petal p3"></div>
+      <div class="bloom-petal p4"></div>
+      <div class="bloom-petal p5"></div>
+      <div class="bloom-petal p6"></div>
+      <div class="bloom-petal p7"></div>
+      <div class="bloom-petal p8"></div>
+    </div>
+
+    <button class="btn-bloom" onclick="triggerBloom()">
+      <span>Masuk Kebun Bunga </span>
+    </button>
+  </div>
+
+  <!-- Interactive Fullscreen Canvas (Stars + Interactive Flower Meadow) -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Interactive Floating Hint Pill -->
+  <div class="garden-hint-pill">
+    <span> Klik di mana aja buat munculin bunga baru</span>
+  </div>
+
+
+  <!-- Main Hero Section -->
+  <main class="hero-container">
+    <h1 class="hero-heading">Haiii Putri Ayu <span>Rosmalia.</span></h1>
+
+    <!-- Main Interactive Card Container -->
+    <div class="card-container" id="mainCard">
+
+      <!-- STEP 1: Main Proposal Invitation -->
+      <div class="step-content active" id="step1">
+        <div class="invitation-text">
+          "Bosen gak sih dikosan?<br>
+          Mau ga kalau aku ajak main atau jalan berdua?<br>
+          itu juga kalau kamu udah enakan badan nya"
+        </div>
+
+        <div class="button-group" id="btnGroup">
+          <button class="btn-primary" onclick="acceptInvitation()">Mau Banget! ➔</button>
+          <button class="btn-evade" id="btnEvade" onmouseover="evadeButton()" onclick="evadeButton()">Enggak Ah
+            😜</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Choose Activity & Time -->
+      <div class="step-content" id="step2">
+        <div class="title-sub"
+          style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ffb4d2; margin-bottom: 0.3rem;">
+          Yaaaaay! </div>
+        <h2
+          style="font-family: 'Outfit', sans-serif; font-size: 2.1rem; font-weight: 700; margin-bottom: 1rem; color: #fff;">
+          Mau Main Ke Mana?</h2>
+
+        <p style="font-size: 0.9rem; color: #dbeafe; margin-bottom: 1rem;">Pilih kegiatan nya :</p>
+
+        <div class="options-grid">
+          <div class="option-card selected" onclick="selectActivity(this, 'Bebas Gimana Kamu ✨')">
+            <div class="option-icon">✨</div>
+            <div class="option-title">Bebas Gimana Kamu</div>
+          </div>
+
+          <div class="option-card" onclick="selectActivity(this, 'Night Ride 🏍️')">
+            <div class="option-icon">🏍️</div>
+            <div class="option-title">Night Ride</div>
+          </div>
+
+          <div class="option-card" onclick="selectActivity(this, 'Wisata Alam 🌿')">
+            <div class="option-icon">🌿</div>
+            <div class="option-title">Wisata Alam</div>
+          </div>
+
+          <div class="option-card" onclick="selectActivity(this, 'Main ke Playground 🎠')">
+            <div class="option-icon">🎠</div>
+            <div class="option-title">Playground</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #dbeafe; margin-bottom: 0.8rem;">Kapan kira-kira waktunya?</p>
+        <div style="margin-bottom: 1.8rem;">
+          <input type="text" id="inputTime" class="custom-input"
+            placeholder="Tulis waktu / hari sendiri... (misal: Sabtu jam 7 malam)"
+            oninput="updateTimeFromInput(this.value)">
+          <div class="time-container" style="margin-top: 10px; margin-bottom: 0;">
+            <div class="time-pill" onclick="selectQuickTime('Weekend ini ')">Weekend ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Malam ini ')">Malam ini</div>
+            <div class="time-pill" onclick="selectQuickTime('Kapan aja kamu senggang ')">Kapan aja kamu senggang</div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="goToStep3()">Lanjut ke Konfirmasi ➔</button>
+      </div>
+
+      <!-- STEP 3: Final Confirmation & Send WhatsApp -->
+      <div class="step-content" id="step3">
+        <div class="title-sub"
+          style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ffb4d2; margin-bottom: 0.3rem;">
+          Deal! </div>
+        <h2
+          style="font-family: 'Outfit', sans-serif; font-size: 2.1rem; font-weight: 700; margin-bottom: 1.2rem; color: #fff;">
+          Janji Main Berdua Dibuat! </h2>
+
+        <div class="summary-card">
+          <div class="summary-item">
+            <span style="font-size: 24px;">📍</span>
+            <div>Aktivitas: <strong id="sumActivity">Bebas Gimana Kamu ✨</strong></div>
+          </div>
+          <div class="summary-item">
+            <span style="font-size: 24px;">⏰</span>
+            <div>Waktu: <strong id="sumTime">Kapan aja kamu senggang 💖</strong></div>
+          </div>
+          <div class="summary-item">
+            <span style="font-size: 24px;">💬</span>
+            <div>Pesan: <strong>"Gak sabar mau jalan bareng kamu! 🥰"</strong></div>
+          </div>
+        </div>
+
+        <a id="waLink" class="btn-wa" target="_blank" href="#">
+          <span>Kirim ke WhatsApp</span> 💬
+        </a>
+        <br>
+        <button class="btn-secondary" onclick="goToStep2()">← Ubah Pilihan</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    /* ==============================================================================
+       INTERACTIVE PROCEDURAL FLOWER MEADOW & CANVASES ENGINE
+       ============================================================================== */
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let mouse = { x: -1000, y: -1000 };
+    let stars = [];
+    let grassBlades = [];
+    let gardenFlowers = [];
+    let heartParticles = [];
+
+    // Track mouse & touch position for interactive garden physics
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initElements();
+    });
+
+    // Plant a new blooming flower interactively when clicking/touching anywhere!
+    function handlePlantEvent(e) {
+      const target = e.target;
+      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.closest('.option-card') || target.closest('.time-pill') || target.closest('.flower-bloom-container')) {
+        return;
+      }
+      const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : width / 2);
+      const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : height / 2);
+      mouse.x = clientX;
+      mouse.y = clientY;
+      plantInteractiveFlower(clientX, clientY);
+    }
+
+    window.addEventListener('click', handlePlantEvent);
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        handlePlantEvent(e.touches[0]);
+      }
+    }, { passive: true });
+
+    function getHillY(x) {
+      // Dynamic hill baseline: higher up on mobile screens so flowers are clearly visible
+      const isMobile = width < 768;
+      const hillBase = isMobile ? height * 0.58 : height * 0.72;
+      return hillBase + Math.sin(x * 0.003) * 30 + Math.cos(x * 0.006) * 16;
+    }
+
+    function initElements() {
+      stars = [];
+      grassBlades = [];
+      gardenFlowers = [];
+      const isMobile = width < 768;
+
+      // 1. Twinkling Stars in Periwinkle Sky (Fewer on Mobile)
+      const numStars = Math.floor((width * height) / (isMobile ? 12000 : 6000));
+      for (let i = 0; i < Math.max(50, numStars); i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * (height * 0.65),
+          radius: Math.random() * 2.2 + 0.5,
+          alpha: Math.random() * 0.8 + 0.2,
+          twinkleSpeed: Math.random() * 0.025 + 0.008,
+          twinkleDir: Math.random() > 0.5 ? 1 : -1,
+          color: ['#ffffff', '#ffb4d2', '#dbeafe', '#e2b0ff', '#ffffff'][Math.floor(Math.random() * 5)]
+        });
+      }
+
+      // 2. Procedural Swaying Grass Blades along Meadow Hill (Optimized density on Mobile)
+      const grassCount = Math.floor(width / (isMobile ? 7.5 : 3.5));
+      for (let i = 0; i < grassCount; i++) {
+        const x = i * (width / grassCount) + (Math.random() * 4 - 2);
+        const groundY = getHillY(x);
+        const grassHeight = Math.random() * (isMobile ? 65 : 55) + 35;
+        grassBlades.push({
+          x: x,
+          groundY: groundY,
+          height: grassHeight,
+          width: Math.random() * 4 + 2,
+          angle: 0,
+          maxSway: Math.random() * 15 + 8,
+          phase: Math.random() * Math.PI * 2,
+          color: ['#22c55e', '#16a34a', '#15803d', '#4ade80', '#86efac'][Math.floor(Math.random() * 5)]
+        });
+      }
+
+      // 3. Pre-planted Interactive Meadow Flowers
+      const initialFlowersCount = Math.floor(width / (isMobile ? 32 : 28));
+      for (let i = 0; i < initialFlowersCount; i++) {
+        const x = Math.random() * width;
+        const groundY = getHillY(x);
+        // Taller stems on sides so flowers sprout around card
+        const isSide = (x < width * 0.3 || x > width * 0.7);
+        const extraStem = isSide ? (isMobile ? 50 : 30) : (isMobile ? 30 : 0);
+        createFlowerObject(x, groundY, true, extraStem);
+      }
+    }
+
+    function createFlowerObject(x, groundY, instantBloom = false, extraStem = 0) {
+      const isMobile = width < 768;
+      const baseStem = isMobile ? Math.random() * 100 + 70 : Math.random() * 90 + 60;
+      const stemHeight = baseStem + extraStem;
+
+      const flowerTypes = ['rose', 'tulip', 'daisy', 'sunflower', 'cosmos', 'heart'];
+      const flowerColors = [
+        ['#ff3b7b', '#ff6b9d'], // Rose Pink
+        ['#ef4444', '#f87171'], // Crimson Red
+        ['#f97316', '#fb923c'], // Warm Orange
+        ['#facc15', '#fde047'], // Golden Yellow
+        ['#a855f7', '#c084fc'], // Purple Lavender
+        ['#ec4899', '#f472b6']  // Magenta Heart
+      ];
+      const selectedType = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+      const selectedColors = flowerColors[Math.floor(Math.random() * flowerColors.length)];
+
+      gardenFlowers.push({
+        x: x,
+        groundY: groundY,
+        stemHeight: stemHeight,
+        growth: instantBloom ? 1 : 0.05,
+        targetGrowth: 1,
+        growthSpeed: Math.random() * 0.025 + 0.015,
+        type: selectedType,
+        colors: selectedColors,
+        petalCount: selectedType === 'sunflower' ? 12 : selectedType === 'daisy' ? 8 : 6,
+        size: Math.random() * (isMobile ? 18 : 16) + 14,
+        swayPhase: Math.random() * Math.PI * 2,
+        swaySpeed: Math.random() * 0.02 + 0.01,
+        angle: 0
+      });
+
+      // Sparkle burst upon planting
+      if (!instantBloom) {
+        createHeartBurst(x, groundY - stemHeight);
+      }
+    }
+
+    function plantInteractiveFlower(clickX, clickY) {
+      // Plant flower at click/touch location, finding groundY
+      const groundY = clickY > height * 0.4 ? clickY : getHillY(clickX);
+      createFlowerObject(clickX, groundY, false);
+    }
+
+    function createHeartBurst(x, y) {
+      const isMobile = width < 768;
+      const count = isMobile ? 18 : 45;
+      for (let i = 0; i < count; i++) {
+        heartParticles.push({
+          x: x,
+          y: y,
+          size: Math.random() * 16 + 8,
+          speedX: (Math.random() - 0.5) * 11,
+          speedY: (Math.random() - 0.5) * 11 - 2,
+          gravity: 0.12,
+          opacity: 1,
+          rotation: Math.random() * Math.PI * 2,
+          spin: (Math.random() - 0.5) * 0.1,
+          color: ['#ff3b7b', '#ff6b9d', '#ffb4d2', '#ffffff', '#ffd700'][Math.floor(Math.random() * 5)]
+        });
+      }
+    }
+
+    function drawMeadowHill() {
+      ctx.save();
+      // Multi-layer rolling green hill gradient
+      const hillGradient = ctx.createLinearGradient(0, height * 0.65, 0, height);
+      hillGradient.addColorStop(0, '#22c55e');
+      hillGradient.addColorStop(0.35, '#16a34a');
+      hillGradient.addColorStop(0.7, '#15803d');
+      hillGradient.addColorStop(1, '#0f5127');
+
+      ctx.fillStyle = hillGradient;
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      ctx.lineTo(0, getHillY(0));
+      for (let x = 0; x <= width; x += 10) {
+        ctx.lineTo(x, getHillY(x));
+      }
+      ctx.lineTo(width, height);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawGrass(time) {
+      ctx.save();
+      const hasMouseActive = mouse.x > -500;
+      for (let i = 0; i < grassBlades.length; i++) {
+        const blade = grassBlades[i];
+
+        // Wind sway physics + Mouse interaction push force
+        const windSway = Math.sin(time * 0.002 + blade.phase) * blade.maxSway;
+        let mousePush = 0;
+        if (hasMouseActive) {
+          const dx = blade.x - mouse.x;
+          const dy = blade.groundY - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            mousePush = (120 - dist) * (dx > 0 ? 0.35 : -0.35);
+          }
+        }
+
+        const tipX = blade.x + windSway + mousePush;
+        const tipY = blade.groundY - blade.height;
+
+        ctx.strokeStyle = blade.color;
+        ctx.lineWidth = blade.width;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(blade.x, blade.groundY);
+        ctx.quadraticCurveTo(blade.x, blade.groundY - blade.height * 0.5, tipX, tipY);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawFlower(flower, time) {
+      if (flower.growth < flower.targetGrowth) {
+        flower.growth = Math.min(flower.targetGrowth, flower.growth + flower.growthSpeed);
+      }
+
+      ctx.save();
+      const currentStemHeight = flower.stemHeight * flower.growth;
+      const isMobile = width < 768;
+
+      // Wind sway & mouse reaction physics
+      const windAngle = Math.sin(time * 0.0015 + flower.swayPhase) * 0.12;
+      let mouseTilt = 0;
+      let dist = 999;
+      if (mouse.x > -500) {
+        const dx = flower.x - mouse.x;
+        const dy = (flower.groundY - currentStemHeight) - mouse.y;
+        dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          mouseTilt = (150 - dist) * 0.0015 * (dx > 0 ? 1 : -1);
+        }
+      }
+
+      const flowerHeadX = flower.x + Math.sin(windAngle + mouseTilt) * currentStemHeight;
+      const flowerHeadY = flower.groundY - Math.cos(windAngle + mouseTilt) * currentStemHeight;
+
+      // 1. Draw Stem
+      ctx.strokeStyle = '#15803d';
+      ctx.lineWidth = Math.max(2, flower.size * 0.18);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(flower.x, flower.groundY);
+      ctx.quadraticCurveTo(flower.x, flower.groundY - currentStemHeight * 0.5, flowerHeadX, flowerHeadY);
+      ctx.stroke();
+
+      // 2. Draw Leaves
+      if (flower.growth > 0.4) {
+        const leafY = flower.groundY - currentStemHeight * 0.4;
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath();
+        ctx.ellipse(flower.x + 8, leafY, 10 * flower.growth, 4 * flower.growth, Math.PI / 4, 0, Math.PI * 2);
+        ctx.ellipse(flower.x - 8, leafY - 5, 10 * flower.growth, 4 * flower.growth, -Math.PI / 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 3. Draw Blooming Flower Head
+      ctx.translate(flowerHeadX, flowerHeadY);
+      const currentSize = flower.size * flower.growth;
+
+      // Glow effect on hover (Disabled on mobile to prevent shadowBlur bottleneck)
+      if (!isMobile && dist < 100) {
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = flower.colors[0];
+      }
+
+      const petalGrad = ctx.createLinearGradient(0, 0, currentSize, currentSize);
+      petalGrad.addColorStop(0, flower.colors[0]);
+      petalGrad.addColorStop(1, flower.colors[1]);
+      ctx.fillStyle = petalGrad;
+
+      const numPetals = flower.petalCount;
+      for (let i = 0; i < numPetals; i++) {
+        const pAngle = (i * 2 * Math.PI) / numPetals;
+        const px = Math.cos(pAngle) * (currentSize * 0.6);
+        const py = Math.sin(pAngle) * (currentSize * 0.6);
+
+        ctx.beginPath();
+        ctx.ellipse(px, py, currentSize * 0.55, currentSize * 0.32, pAngle, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Flower Center Core
+      ctx.fillStyle = flower.type === 'sunflower' ? '#78350f' : '#fef08a';
+      if (!isMobile) {
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = '#fef08a';
+      }
+      ctx.beginPath();
+      ctx.arc(0, 0, currentSize * 0.35, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function animate(time) {
+      ctx.clearRect(0, 0, width, height);
+      const isMobile = width < 768;
+
+      // Stars
+      for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.alpha += star.twinkleSpeed * star.twinkleDir;
+        if (star.alpha >= 0.95) star.twinkleDir = -1;
+        else if (star.alpha <= 0.15) star.twinkleDir = 1;
+
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.fillStyle = star.color;
+        if (!isMobile) {
+          ctx.shadowBlur = star.radius * 2;
+          ctx.shadowColor = star.color;
+        }
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Meadow Hill Background
+      drawMeadowHill();
+
+      // Grass Blades
+      drawGrass(time);
+
+      // Interactive Flowers
+      for (let i = 0; i < gardenFlowers.length; i++) {
+        drawFlower(gardenFlowers[i], time);
+      }
+
+      // Heart Particles Explosion
+      for (let i = heartParticles.length - 1; i >= 0; i--) {
+        const p = heartParticles[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.speedY += p.gravity;
+        p.rotation += p.spin;
+        p.opacity -= 0.018;
+
+        if (p.opacity <= 0) {
+          heartParticles.splice(i, 1);
+        } else {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+          if (!isMobile) {
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p.color;
+          }
+
+          const s = p.size / 15;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.bezierCurveTo(-5 * s, -5 * s, -10 * s, 2 * s, 0, 10 * s);
+          ctx.bezierCurveTo(10 * s, 2 * s, 5 * s, -5 * s, 0, 0);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    initElements();
+    requestAnimationFrame(animate);
+
+    /* ========================================================
+       FLOWER BLOOM INTRO OVERLAY LOGIC
+       ======================================================== */
+    let isBloomed = false;
+
+    function triggerBloom() {
+      if (isBloomed) return;
+      isBloomed = true;
+
+      const flowerElem = document.getElementById('flowerBloom');
+      flowerElem.classList.remove('bud');
+      flowerElem.classList.add('bloomed');
+
+      createHeartBurst(window.innerWidth / 2, window.innerHeight / 2);
+
+      setTimeout(() => {
+        const overlay = document.getElementById('flowerIntro');
+        overlay.classList.add('hidden');
+      }, 1100);
+    }
+
+    /* ========================================================
+       INTERACTIVE INVITATION LOGIC
+       ======================================================== */
+    let selectedActivity = 'Bebas Gimana Kamu ✨';
+    let selectedTime = 'Kapan aja kamu senggang 💖';
+
+    function evadeButton() {
+      const btn = document.getElementById('btnEvade');
+      const card = document.getElementById('mainCard');
+      const cardRect = card.getBoundingClientRect();
+
+      const maxX = cardRect.width - btn.offsetWidth - 30;
+      const maxY = cardRect.height - btn.offsetHeight - 40;
+
+      const randomX = Math.max(15, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(15, Math.floor(Math.random() * maxY));
+
+      btn.style.position = 'absolute';
+      btn.style.left = randomX + 'px';
+      btn.style.top = randomY + 'px';
+
+      const funnyTexts = [
+        'Eits gak bisa! 😜',
+        'Coba klik lagi! 🏃‍♂️',
+        'Harus klik Mau! 🥰',
+        'Ayo dong main! ✨',
+        'Nggak bisa ditolak 💖'
+      ];
+      btn.innerText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
+    }
+
+    function acceptInvitation() {
+      const rect = document.getElementById('mainCard').getBoundingClientRect();
+      createHeartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+      setTimeout(() => {
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step2').classList.add('active');
+      }, 400);
+    }
+
+    function selectActivity(elem, activity) {
+      document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      elem.classList.add('selected');
+      selectedActivity = activity;
+    }
+
+    function updateTimeFromInput(val) {
+      if (val && val.trim() !== '') {
+        selectedTime = val.trim();
+      } else {
+        selectedTime = 'Kapan aja kamu senggang 💖';
+      }
+      document.querySelectorAll('.time-pill').forEach(t => t.classList.remove('selected'));
+    }
+
+    function selectQuickTime(timeStr) {
+      const inputElem = document.getElementById('inputTime');
+      inputElem.value = timeStr;
+      selectedTime = timeStr;
+      document.querySelectorAll('.time-pill').forEach(t => {
+        if (t.innerText.trim() === timeStr.trim() || timeStr.includes(t.innerText.trim())) {
+          t.classList.add('selected');
+        } else {
+          t.classList.remove('selected');
+        }
+      });
+    }
+
+    function goToStep3() {
+      const timeVal = document.getElementById('inputTime').value.trim();
+      if (timeVal) {
+        selectedTime = timeVal;
+      }
+
+      document.getElementById('sumActivity').innerText = selectedActivity;
+      document.getElementById('sumTime').innerText = selectedTime;
+
+      const textMsg = `Boleh deh ayo! 🥰%0A%0AKegiatan: ${selectedActivity}%0AWaktu: ${selectedTime}`;
+      document.getElementById('waLink').href = `https://wa.me/6285795132612?text=${textMsg}`;
+
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step3').classList.add('active');
+
+      const rect = document.getElementById('mainCard').getBoundingClientRect();
+      createHeartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+
+    function goToStep2() {
+      document.getElementById('step3').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+    }
+  </script>
+</body>
+
+</html>
